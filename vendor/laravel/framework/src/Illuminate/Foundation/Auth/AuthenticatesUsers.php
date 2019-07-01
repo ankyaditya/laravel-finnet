@@ -78,6 +78,8 @@ trait AuthenticatesUsers
      */
     protected function attemptLogin(Request $request)
     {
+        $request->merge(['status' => 'ACTIVE']);
+
         return $this->guard()->attempt(
             $this->credentials($request), $request->filled('remember')
         );
@@ -91,7 +93,7 @@ trait AuthenticatesUsers
      */
     protected function credentials(Request $request)
     {
-        return $request->only($this->username(), 'password');
+        return $request->only($this->username(), 'password', 'status');
     }
 
     /**
