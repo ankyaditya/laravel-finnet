@@ -95,6 +95,18 @@ class AccessFirewallController extends Controller
         return redirect()->route('firewallaccess.index', ['id' => $id])->with('status','Request Approved');
     }
 
+    public function disapprovemgr($id){
+        $current_date_time = Carbon::now();
+        $firewallaccesss = \App\AccessFirewall::findOrFail($id);
+        $firewallaccesss->status_approval = 'Disapprove';
+        $firewallaccesss->approved_by = \Auth::user()->name;
+        $firewallaccesss->approved_date = $current_date_time;
+        $firewallaccesss->step = 0;
+        $firewallaccesss->save();
+
+        return redirect()->route('firewallaccess.index', ['id' => $id])->with('status','Request Disaprove');
+    }
+
     public function approvestaffw($id){
         $current_date_time = Carbon::now();
         $firewallaccesss = \App\AccessFirewall::findOrFail($id);

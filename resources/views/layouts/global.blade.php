@@ -12,7 +12,7 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{asset('dist/css/adminlte.css')}}">
   <!-- iCheck -->
   <link rel="stylesheet" href="{{asset('plugins/iCheck/flat/blue.css')}}">
   <!-- Morris chart -->
@@ -425,7 +425,7 @@
   <!-- datepicker -->
 
   <script src="{{asset('plugins/datepicker/datepicak.js')}}"></script>
-  
+
   <script src="{{asset('plugins/datepicker/bootstrap-datepicker.js')}}"></script>
   <!-- Bootstrap WYSIHTML5 -->
   <script src="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
@@ -544,6 +544,22 @@
     $(function() {
       $('#reservation').daterangepicker()
     })
+  </script>
+
+  <script src="{{asset ('plugins/jquery/jquery.js')}}">
+  </script>
+  <script>
+    $(document).ready(function() {
+      $(".btn-smnet").on('click', function() {
+        $(".coverb").fadeIn('slow');
+        $(".popuup").fadeIn('slow');
+      });
+      $(".coverb").on('click', function() {
+        $(".coverb").fadeOut('slow');
+
+        $(".popuup").fadeOut('slow');
+      });
+    });
   </script>
 </body>
 

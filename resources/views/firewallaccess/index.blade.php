@@ -14,13 +14,13 @@
     <!-- /.card-header -->
     <div class="card-body">
         @if(Auth::user()->roles == "USER")
-            <a href="{{route('firewallaccess.create')}}" style="padding:13px;" class="btn btn-app">
-                <i class="fa fa-edit"></i> Tambah
-            </a>
+        <a href="{{route('firewallaccess.create')}}" style="padding:13px;" class="btn btn-app">
+            <i class="fa fa-edit"></i> Tambah
+        </a>
         @else
         <a href="" style="padding:13px;" class="btn btn-app disabled">
-                <i class="fa fa-edit"></i> Tambah
-            </a>
+            <i class="fa fa-edit"></i> Tambah
+        </a>
         @endif
         <a href="/firewallaccess/exporti" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
 
@@ -49,13 +49,13 @@
                     <td>{{$loop->iteration}}</td>
                     <td>FW{{$firewallaccess->id}}</td>
                     <td>@if($firewallaccess->step == 3)
-                            <span class="badge badge-success">
-                                Active
-                            </span>
+                        <span class="badge badge-success">
+                            Active
+                        </span>
                         @else
-                            <span class="badge badge-info">
-                                Waiting
-                            </span>
+                        <span class="badge badge-info">
+                            Waiting
+                        </span>
                         @endif
                     </td>
                     <td>{{$firewallaccess->requester_name}}</td>
@@ -80,33 +80,33 @@
                             Waiting
                         </span>
                         @else
-                            {{$firewallaccess->worked_date}}
+                        {{$firewallaccess->worked_date}}
                         @endif
                     </td>
                     <td>
                         @if($firewallaccess->status_checked == "Pending")
-                            <span class="badge badge-warning">
-                                {{$firewallaccess->status_checked}}
-                            </span>
+                        <span class="badge badge-warning">
+                            {{$firewallaccess->status_checked}}
+                        </span>
                         @else
-                            <span class="badge badge-success">
-                                {{$firewallaccess->status_checked}}
-                            </span>
+                        <span class="badge badge-success">
+                            {{$firewallaccess->status_checked}}
+                        </span>
                         @endif
                     </td>
                     <td>
                         @if($firewallaccess->status_worked == "Pending")
-                            <span class="badge badge-warning">
-                                {{$firewallaccess->status_checked}}
-                            </span>
+                        <span class="badge badge-warning">
+                            {{$firewallaccess->status_checked}}
+                        </span>
                         @else
-                            <span class="badge badge-success">
-                                {{$firewallaccess->status_worked}}
-                            </span>
+                        <span class="badge badge-success">
+                            {{$firewallaccess->status_worked}}
+                        </span>
                         @endif
                     </td>
                     <td>
-                    @if($firewallaccess->status_approval == "Approved")
+                        @if($firewallaccess->status_approval == "Approved")
                         <span class="badge badge-success">
                             {{$firewallaccess->status_approval}}
                         </span>
@@ -121,38 +121,34 @@
                         @endif
                     </td>
                     <td>
+
                         @if(Auth::user()->roles == "USER")
-                            <?php $step = 4; ?>
+                        <?php $step = 4; ?>
                         @else
-                            <?php $step = 1; ?>
+                        <?php $step = 1; ?>
                         @endif
 
                         @if(Auth::user()->roles == "ADMIN" && $firewallaccess->status_approval == "Pending")
-                            <form class="d-inline" action="{{route('firewallaccess.approvemgr', ['id'=>$firewallaccess->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
-                                @csrf
-                                <input type="hidden" value="PUT" name="_method">
-                                <input type="submit" class="btn btn-success btn-sm" value="Approve">
-                            </form>
+                            <input type="submit" class="btn btn-success btn-smnet" value="Approve">
                         @elseif(Auth::user()->roles == "STAFF" && $firewallaccess->step == 1)
-                            <form class="d-inline" action="{{route('firewallaccess.approvestaffw', ['id'=>$firewallaccess->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
+                            <form class="d-inline" action="{{route('firewallaccess.approvestaffw', ['id'=>$firewallaccess->id])}}" method="POST">
                                 @csrf
                                 <input type="hidden" value="PUT" name="_method">
                                 <input type="submit" class="btn btn-success btn-sm" value="Approve">
                             </form>
                         @elseif(Auth::user()->roles == "STAFF" && $firewallaccess->step == 2)
-                            <form class="d-inline" action="{{route('firewallaccess.approvestaffc', ['id'=>$firewallaccess->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
+                            <form class="d-inline" action="{{route('firewallaccess.approvestaffc', ['id'=>$firewallaccess->id])}}" method="POST">
                                 @csrf
                                 <input type="hidden" value="PUT" name="_method">
                                 <input type="submit" class="btn btn-success btn-sm" value="Approve">
                             </form>
                         @elseif($firewallaccess->step == 3 && $step != 4 || Auth::user()->roles == "ADMIN" || Auth::user()->roles == "STAFF")
-                            <a class="btn btn-success btn-sm disabled">Done</a>        
+                            <a class="btn btn-success btn-sm disabled">Done</a>
                         @endif
-                            
+
                         @if(Auth::user()->roles == "USER" && Auth::user()->name == $firewallaccess->requester_name)
                             <a class="btn btn-info text-white btn-sm" href="{{route('firewallaccess.edit', ['id'=>$firewallaccess->id])}}">Edit</a>
                         @endif
-
                         <a class="btn btn-info text-white btn-sm" href="{{route('firewallaccess.show', ['id'=>$firewallaccess->id])}}">Detail</a>
                     </td>
                 </tr>
@@ -161,5 +157,30 @@
         </table>
     </div>
     <!-- /.card-body -->
+</div>
+
+<div class="popuup">
+    <papi> Apakah Anda Yakin??</papi>
+    <div class="popuup-header"> Status </div>
+    <div class="popuup-footer">
+    </div>
+    <div class="options">
+        <aja class="btn btn-defaultu pull-rigth">
+            <form action="{{route('firewallaccess.approvemgr', ['id'=>$firewallaccess->id])}}" method="POST">
+                @csrf
+                <input type="hidden" value="PUT" name="_method">
+                <input type="submit" class="btn btn-successpop btn-sm" value="APPROVE">
+            </form>
+        </aja>
+        <aja class="btn btn-defaultu pull-rigth">
+            <form action="{{route('firewallaccess.disapprovemgr', ['id'=>$firewallaccess->id])}}" method="POST">
+                @csrf
+                <input type="hidden" value="PUT" name="_method">
+                <input type="submit" class="btn btn-successpep btn-sm" value="DISAPROVE">
+            </form>
+        </aja>
+    </div>
+</div>
+<div class="coverb">
 </div>
 @endsection

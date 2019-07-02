@@ -15,6 +15,7 @@ class UserOsController extends Controller
             if (Gate::allows('manage-requestos')) return $next($request);
             abort(403, "You don't have that privileges");
         });
+        
     }
 
     public function index()
@@ -78,6 +79,18 @@ class UserOsController extends Controller
         $useros->save();
 
         return redirect()->route('useros.index', ['id' => $id])->with('status','Request Approved');
+    }
+
+    public function disapprovemgr($id){
+        $current_date_time = Carbon::now();
+        $useros = \App\UserOs::findOrFail($id);
+        $useros->status_approval = 'Disapprove';
+        $useros->approved_by = \Auth::user()->name;
+        $useros->approved_date = $current_date_time;
+        $useros->step = 0;
+        $useros->save();
+
+        return redirect()->route('useros.index', ['id' => $id])->with('status','Request Disaprove');
     }
 
     public function approvestaffw($id){

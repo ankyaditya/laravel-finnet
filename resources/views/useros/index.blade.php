@@ -130,11 +130,7 @@
                         
 
                         @if(Auth::user()->roles == "ADMIN" && $uos->status_approval == "Pending")
-                            <form class="d-inline" action="{{route('useros.approvemgr', ['id'=>$uos->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
-                                @csrf
-                                <input type="hidden" value="PUT" name="_method">
-                                <input type="submit" class="btn btn-success btn-sm" value="Approve">
-                            </form>
+                            <input type="submit" class="btn btn-success btn-smnet" value="Approve">
                         @elseif(Auth::user()->roles == "STAFF" && $uos->step == 1)
                             <form class="d-inline" action="{{route('useros.approvestaffw', ['id'=>$uos->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
                                 @csrf
@@ -150,7 +146,6 @@
                         @elseif($uos->step == 3 && $step != 4 || Auth::user()->roles == "ADMIN" || Auth::user()->roles == "STAFF")
                             <a class="btn btn-success btn-sm disabled">Done</a>        
                         @endif
-
                         <a class="btn btn-info text-white btn-sm" href="{{route('useros.show', ['id'=>$uos->id])}}">Detail</a>
                     </td>
                 </tr>
@@ -159,5 +154,30 @@
         </table>
     </div>
     <!-- /.card-body -->
+</div>
+
+<div class="popuup">
+    <papi> Apakah Anda Yakin??</papi>
+    <div class="popuup-header"> Status </div>
+    <div class="popuup-footer">
+    </div>
+    <div class="options">
+        <aja class="btn btn-defaultu pull-rigth">
+            <form action="{{route('useros.approvemgr', ['id'=>$uos->id])}}" method="POST">
+                @csrf
+                <input type="hidden" value="PUT" name="_method">
+                <input type="submit" class="btn btn-successpop btn-sm" value="APPROVE">
+            </form>
+        </aja>
+        <aja class="btn btn-defaultu pull-rigth">
+            <form action="{{route('useros.disapprovemgr', ['id'=>$uos->id])}}" method="POST">
+                @csrf
+                <input type="hidden" value="PUT" name="_method">
+                <input type="submit" class="btn btn-successpep btn-sm" value="DISAPROVE">
+            </form>
+        </aja>
+    </div>
+</div>
+<div class="coverb">
 </div>
 @endsection

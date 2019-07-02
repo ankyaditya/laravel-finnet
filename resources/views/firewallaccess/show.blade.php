@@ -100,9 +100,13 @@
                                 <span class="badge badge-success">
                                     Approved
                                 </span>
-                            @else
+                            @elseif($firewallaccesss->status_approval == "Pending")
                                 <span class="badge badge-warning">
                                     Pending
+                                </span>
+                            @else  
+                                <span class="badge badge-danger">
+                                    Disaprove
                                 </span>
                             @endif
                         </td>

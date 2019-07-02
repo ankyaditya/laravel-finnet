@@ -30,15 +30,15 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('manage-userfirewall', function ($users) {
-            return $users->divisi == "NETWORK";
+            return $users->divisi == "NETWORK" || $users->divisi == "USER";
         });
 
         Gate::define('manage-requestfirewall', function ($users) {
-            return $users->divisi == "NETWORK";
+            return $users->divisi == "NETWORK" || $users->divisi == "USER";
         });
 
         Gate::define('manage-requestos', function ($users) {
-            return $users->divisi == "SERVER";
+            return $users->divisi == "SERVER" || $users->divisi == "USER";
         });
     }
 }

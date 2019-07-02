@@ -18,19 +18,21 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource("users", "UserController");
+Route::resource("users", "UserController")->middleware('auth');
 
-Route::put('/firewalls/{id}/approvestaff', 'UserFirewallController@approvestaff')->name('firewalls.approvestaff');
-Route::put('/firewalls/{id}/approvemgr', 'UserFirewallController@approvemgr')->name('firewalls.approvemgr');
+Route::put('/firewalls/{id}/approvestaff', 'UserFirewallController@approvestaff')->name('firewalls.approvestaff')->middleware('auth');
+Route::put('/firewalls/{id}/approvemgr', 'UserFirewallController@approvemgr')->name('firewalls.approvemgr')->middleware('auth');
 Route::resource("firewalls", "UserFirewallController");
 
-Route::put('/firewallaccess/{id}/approvestaffc', 'AccessFirewallController@approvestaffc')->name('firewallaccess.approvestaffc');
-Route::put('/firewallaccess/{id}/approvestaffw', 'AccessFirewallController@approvestaffw')->name('firewallaccess.approvestaffw');
-Route::put('/firewallaccess/{id}/approvemgr', 'AccessFirewallController@approvemgr')->name('firewallaccess.approvemgr');
-Route::get('/firewallaccess/exporti','AccessFirewallController@exportir');
-Route::resource("firewallaccess", "AccessFirewallController");
+Route::put('/firewallaccess/{id}/approvestaffc', 'AccessFirewallController@approvestaffc')->name('firewallaccess.approvestaffc')->middleware('auth');
+Route::put('/firewallaccess/{id}/approvestaffw', 'AccessFirewallController@approvestaffw')->name('firewallaccess.approvestaffw')->middleware('auth');
+Route::put('/firewallaccess/{id}/approvemgr', 'AccessFirewallController@approvemgr')->name('firewallaccess.approvemgr')->middleware('auth');
+Route::put('/firewallaccess/{id}/disapprovemgr', 'AccessFirewallController@disapprovemgr')->name('firewallaccess.disapprovemgr')->middleware('auth');
+Route::get('/firewallaccess/exporti','AccessFirewallController@exportir')->middleware('auth');
+Route::resource("firewallaccess", "AccessFirewallController")->middleware('auth');
 
-Route::put('/useros/{id}/approvestaffc', 'UserOsController@approvestaffc')->name('useros.approvestaffc');
-Route::put('/useros/{id}/approvestaffw', 'UserOsController@approvestaffw')->name('useros.approvestaffw');
-Route::put('/useros/{id}/approvemgr', 'UserOsController@approvemgr')->name('useros.approvemgr');
-Route::resource("useros", "UserOsController");
+Route::put('/useros/{id}/approvestaffc', 'UserOsController@approvestaffc')->name('useros.approvestaffc')->middleware('auth');
+Route::put('/useros/{id}/approvestaffw', 'UserOsController@approvestaffw')->name('useros.approvestaffw')->middleware('auth');
+Route::put('/useros/{id}/approvemgr', 'UserOsController@approvemgr')->name('useros.approvemgr')->middleware('auth');
+Route::put('/useros/{id}/disapprovemgr', 'UserOsController@disapprovemgr')->name('useros.disapprovemgr')->middleware('auth');
+Route::resource("useros", "UserOsController")->middleware('auth');
