@@ -28,7 +28,8 @@ Route::put('/firewallaccess/{id}/approvestaffc', 'AccessFirewallController@appro
 Route::put('/firewallaccess/{id}/approvestaffw', 'AccessFirewallController@approvestaffw')->name('firewallaccess.approvestaffw')->middleware('auth');
 Route::put('/firewallaccess/{id}/approvemgr', 'AccessFirewallController@approvemgr')->name('firewallaccess.approvemgr')->middleware('auth');
 Route::put('/firewallaccess/{id}/disapprovemgr', 'AccessFirewallController@disapprovemgr')->name('firewallaccess.disapprovemgr')->middleware('auth');
-Route::get('/firewallaccess/exporti','AccessFirewallController@exportir')->middleware('auth');
+Route::get('firewallaccess/send/email', 'AccessFirewallController@mail')->name('firewallaccess.mail')->middleware('auth');
+Route::get('/firewallaccess/exporti','AccessFirewallController@exportir')->middleware('auth');\
 Route::resource("firewallaccess", "AccessFirewallController")->middleware('auth');
 
 Route::put('/useros/{id}/approvestaffc', 'UserOsController@approvestaffc')->name('useros.approvestaffc')->middleware('auth');
