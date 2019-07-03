@@ -13062,7 +13062,7 @@ a.text-muted:hover {
   border-radius: 4px;
   margin-top: -500px;
   margin-left: 290px;
-  position: fixed;
+  position: absolute;
   z-index: 1000;
   text-align: center;
   vertical-align: middle;

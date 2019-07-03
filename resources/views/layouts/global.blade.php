@@ -157,6 +157,14 @@
                   </a>
                 </li>
               </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('server.index')}}" class="nav-link">
+                    <i class="fa fa-circle-o nav-icon"></i>
+                    <p>Data Request Server</p>
+                  </a>
+                </li>
+              </ul>
             </li>
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
@@ -545,9 +553,7 @@
       $('#reservation').daterangepicker()
     })
   </script>
-
-  <script src="{{asset ('plugins/jquery/jquery.js')}}">
-  </script>
+  
   <script>
     $(document).ready(function() {
       $(".btn-smnet").on('click', function() {

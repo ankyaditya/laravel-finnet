@@ -36,3 +36,9 @@ Route::put('/useros/{id}/approvestaffw', 'UserOsController@approvestaffw')->name
 Route::put('/useros/{id}/approvemgr', 'UserOsController@approvemgr')->name('useros.approvemgr')->middleware('auth');
 Route::put('/useros/{id}/disapprovemgr', 'UserOsController@disapprovemgr')->name('useros.disapprovemgr')->middleware('auth');
 Route::resource("useros", "UserOsController")->middleware('auth');
+
+Route::put('/server/{id}/approvestaffc', 'ServerController@approvestaffc')->name('server.approvestaffc')->middleware('auth');
+Route::put('/server/{id}/approvestaffw', 'ServerController@approvestaffw')->name('server.approvestaffw')->middleware('auth');
+Route::put('/server/{id}/approvemgr', 'ServerController@approvemgr')->name('server.approvemgr')->middleware('auth');
+Route::put('/server/{id}/disapprovemgr', 'ServerController@disapprovemgr')->name('server.disapprovemgr')->middleware('auth');
+Route::resource("server", "ServerController")->middleware('auth');

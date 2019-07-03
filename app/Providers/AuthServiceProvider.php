@@ -40,5 +40,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('manage-requestos', function ($users) {
             return $users->divisi == "SERVER" || $users->divisi == "USER";
         });
+
+        Gate::define('manage-requestserver', function ($users) {
+            return $users->divisi == "SERVER" || $users->divisi == "USER";
+        });
     }
 }

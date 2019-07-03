@@ -129,7 +129,16 @@
                         @endif
 
                         @if(Auth::user()->roles == "ADMIN" && $firewallaccess->status_approval == "Pending")
-                            <input type="submit" class="btn btn-success btn-smnet" value="Approve">
+                            <form action="{{route('firewallaccess.approvemgr', ['id'=>$firewallaccess->id])}}" method="POST">
+                                @csrf
+                                <input type="hidden" value="PUT" name="_method">
+                                <input type="submit" class="btn btn-success btn-sm" value="Approve">
+                            </form>
+                            <form action="{{route('firewallaccess.disapprovemgr', ['id'=>$firewallaccess->id])}}" method="POST">
+                                @csrf
+                                <input type="hidden" value="PUT" name="_method">
+                                <input type="submit" class="btn btn-danger btn-sm" value="Disapprove">
+                            </form>
                         @elseif(Auth::user()->roles == "STAFF" && $firewallaccess->step == 1)
                             <form class="d-inline" action="{{route('firewallaccess.approvestaffw', ['id'=>$firewallaccess->id])}}" method="POST">
                                 @csrf
@@ -157,30 +166,5 @@
         </table>
     </div>
     <!-- /.card-body -->
-</div>
-
-<div class="popuup">
-    <papi> Apakah Anda Yakin??</papi>
-    <div class="popuup-header"> Status </div>
-    <div class="popuup-footer">
-    </div>
-    <div class="options">
-        <aja class="btn btn-defaultu pull-rigth">
-            <form action="{{route('firewallaccess.approvemgr', ['id'=>$firewallaccess->id])}}" method="POST">
-                @csrf
-                <input type="hidden" value="PUT" name="_method">
-                <input type="submit" class="btn btn-successpop btn-sm" value="APPROVE">
-            </form>
-        </aja>
-        <aja class="btn btn-defaultu pull-rigth">
-            <form action="{{route('firewallaccess.disapprovemgr', ['id'=>$firewallaccess->id])}}" method="POST">
-                @csrf
-                <input type="hidden" value="PUT" name="_method">
-                <input type="submit" class="btn btn-successpep btn-sm" value="DISAPROVE">
-            </form>
-        </aja>
-    </div>
-</div>
-<div class="coverb">
 </div>
 @endsection
