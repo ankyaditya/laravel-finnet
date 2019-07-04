@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMailableOS;
 
 class UserOsController extends Controller
 {
@@ -45,6 +47,8 @@ class UserOsController extends Controller
         $useros->step = 0;
 
         $useros->save();
+        $useros->id = $useros->id;
+        Mail::to('ankyaditya17@gmail.com')->send(new SendMailableOS($useros));
         return redirect()->route('useros.index')->with('status', 'Request Firewall Added');
     }
 

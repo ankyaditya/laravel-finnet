@@ -179,31 +179,22 @@
             </div>
             <div class="satu-col" style=" color:#ffffff;padding: 0% 2% 0% 2%;">
                 <h1 style="text-align:center">Dear Infra Team</h1>
-                <p style="text-align: justify;">We are already have firewall access request from {{$firewallaccesss->requester_name}}. This is all data request:
+                <p style="text-align: justify;">We are already have Operating System request from {{$useros->requester_name}}. This is all data request:
 
                     <li style="margin-left:20px">
-                        Project Name: {{$firewallaccesss->project_name}}
+                        Form ID: FR{{$useros->id}}
                     </li>
                     <li style="margin-left:20px">
-                        Form ID: FR{{$firewallaccesss->id}}
+                        Requester Name: {{$useros->requester_name}}
                     </li>
                     <li style="margin-left:20px">
-                        Requester Name: {{$firewallaccesss->requester_name}}
+                        IP Server: {{$useros->source}}
                     </li>
                     <li style="margin-left:20px">
-                        Source: {{$firewallaccesss->source}}
+                        Roles: {{$useros->roles}}
                     </li>
                     <li style="margin-left:20px">
-                        Destination: {{$firewallaccesss->destination}}
-                    </li>
-                    <li style="margin-left:20px">
-                        Making Access Period: {{$firewallaccesss->access_period}}
-                    </li>
-                    <li style="margin-left:20px">
-                        Port: {{$firewallaccesss->port}}
-                    </li>
-                    <li style="margin-left:20px">
-                        Information: {{$firewallaccesss->description}}
+                        Information: {{$useros->description}}
                     </li>
 
                 </p>

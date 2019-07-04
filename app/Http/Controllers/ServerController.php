@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMailableRS;
 
 class ServerController extends Controller
 {
@@ -49,6 +51,8 @@ class ServerController extends Controller
         }
 
         $server->save();
+        $server->id = $server->id;
+        Mail::to('ankyaditya17@gmail.com')->send(new SendMailableRS($server));
         return redirect()->route('server.index')->with('status', 'Request Server Added');
     }
 

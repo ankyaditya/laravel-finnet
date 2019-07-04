@@ -179,31 +179,34 @@
             </div>
             <div class="satu-col" style=" color:#ffffff;padding: 0% 2% 0% 2%;">
                 <h1 style="text-align:center">Dear Infra Team</h1>
-                <p style="text-align: justify;">We are already have firewall access request from {{$firewallaccesss->requester_name}}. This is all data request:
+                <p style="text-align: justify;">We are already have Server request from {{$server->requester_name}}. This is all data request:
 
                     <li style="margin-left:20px">
-                        Project Name: {{$firewallaccesss->project_name}}
+                        Form ID: RS{{$server->id}}
                     </li>
                     <li style="margin-left:20px">
-                        Form ID: FR{{$firewallaccesss->id}}
+                        Requester Name: {{$server->requester_name}}
                     </li>
                     <li style="margin-left:20px">
-                        Requester Name: {{$firewallaccesss->requester_name}}
+                        Operating System: {{$server->os}}
                     </li>
                     <li style="margin-left:20px">
-                        Source: {{$firewallaccesss->source}}
+                        RAM: {{$server->ram}} GB
                     </li>
                     <li style="margin-left:20px">
-                        Destination: {{$firewallaccesss->destination}}
+                        CPU: {{$server->cpu}} GB
                     </li>
                     <li style="margin-left:20px">
-                        Making Access Period: {{$firewallaccesss->access_period}}
+                        Disk: {{$server->disk}} GB
                     </li>
                     <li style="margin-left:20px">
-                        Port: {{$firewallaccesss->port}}
+                        Environtment: {{$server->environtment}}
                     </li>
                     <li style="margin-left:20px">
-                        Information: {{$firewallaccesss->description}}
+                        Aplikasi: {{$server->aplikasi}}
+                    </li>
+                    <li style="margin-left:20px">
+                        Information: {{$server->description}}
                     </li>
 
                 </p>

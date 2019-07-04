@@ -12,7 +12,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SendMailable;
+use App\Mail\SendMailableFW;
 
 class AccessFirewallController extends Controller
 {
@@ -50,8 +50,9 @@ class AccessFirewallController extends Controller
         $firewallaccesss->access_period = $request->get('access_period');
         $firewallaccesss->description = $request->get('description');
         $firewallaccesss->step = 0;
-        Mail::to('ankyaditya17@gmail.com')->send(new SendMailable($firewallaccesss));
         $firewallaccesss->save();
+        $firewallaccesss->id = $firewallaccesss->id;
+        Mail::to('ankyaditya17@gmail.com')->send(new SendMailableFW($firewallaccesss));
         return redirect()->route('firewallaccess.index')->with('status', 'Request Firewall Added');
     }
 
@@ -134,19 +135,5 @@ class AccessFirewallController extends Controller
     
     public function exportir(){
 		return Excel::download(new AccessExport, 'Access_firewal_finnet.xlsx');
-    }
-
-    public function mail(Request $request)  
-    {   
-        $firewallaccesss = new \App\AccessFirewall;
-        $firewallaccesss->requester_name = \Auth::user()->name;
-        $firewallaccesss->project_name = $request->get('project_name');
-        $firewallaccesss->source = $request->get('source');
-        $firewallaccesss->destination = $request->get('destination');
-        $firewallaccesss->port = $request->get('port');
-        $firewallaccesss->access_period = $request->get('access_period');
-        $firewallaccesss->description = $request->get('description');
-        
-        Mail::to('ankyaditya17@gmail.com')->send(new SendMailable($firewallaccesss));
     }
 }
