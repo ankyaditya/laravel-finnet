@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailableOS;
+use App\Mail\SendMailbackOS;
 
 class UserOsController extends Controller
 {
@@ -117,6 +118,9 @@ class UserOsController extends Controller
         $useros->checked_date = $current_date_time;
         $useros->step = 3;
         $useros->save();
+        $useros->id = $useros->id;
+        $useros->requestner_name = $useros->requestner_name;
+        Mail::to('ankyaditya17@gmail.com')->send(new SendMailbackOS($useros));
         return redirect()->route('useros.index', ['id' => $id])->with('status','Request Approved');
     }
 }

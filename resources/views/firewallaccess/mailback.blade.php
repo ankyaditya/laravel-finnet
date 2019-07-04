@@ -178,44 +178,16 @@
                 <img src="{{asset('img/infra.png')}}" style="max-width: 100%;">
             </div>
             <div class="satu-col" style=" color:#ffffff;padding: 0% 2% 0% 2%;">
-                <h1 style="text-align:center">Dear Infra Team</h1>
-                <p style="text-align: justify;">We are already have firewall access request from {{$firewallaccesss->requester_name}}. This is all data request:
-
-                    <li style="margin-left:20px">
-                        Project Name: {{$firewallaccesss->project_name}}
-                    </li>
-                    <li style="margin-left:20px">
-                        Form ID: FW{{$firewallaccesss->id}}
-                    </li>
-                    <li style="margin-left:20px">
-                        Requester Name: {{$firewallaccesss->requester_name}}
-                    </li>
-                    <li style="margin-left:20px">
-                        Source: {{$firewallaccesss->source}}
-                    </li>
-                    <li style="margin-left:20px">
-                        Destination: {{$firewallaccesss->destination}}
-                    </li>
-                    <li style="margin-left:20px">
-                        Making Access Period: {{$firewallaccesss->access_period}}
-                    </li>
-                    <li style="margin-left:20px">
-                        Port: {{$firewallaccesss->port}}
-                    </li>
-                    <li style="margin-left:20px">
-                        Information: {{$firewallaccesss->description}}
-                    </li>
-
-                </p>
-
+                <h1 style="text-align:center">Dear {{$firewallaccesss->requester_name}}</h1>
+                <p style="text-align: center;">Your request with Request ID: FW{{$firewallaccesss->id}} has been approved.</p>
             </div>
             <div style="padding: 4%">
                 <div class="kotakb" style="padding: 2% 2% 2% 2%;">
-                    Please check this request immediately
+                    Thankyou for your patience
                 </div>
             </div>
-            <div class="button-holder" style="text-align:center;"padding: 0% 2% 0% 2%;">
-                <a class="btn" href="#" target="_blank" style="text-decoration: none; font-weight: 800;letter-spacing: 1px;border-radius: 8px;">Work Now</a>
+            <div class="button-holder" style="text-align:center; padding: 0% 2% 0% 2%;">
+                <a class="btn" href="#" target="_blank" style="text-decoration: none; font-weight: 800;letter-spacing: 1px;border-radius: 8px;">Check it Now</a>
             </div>
             <div style="padding: 3% 0% 0% 0%">
                 <div class="line" style="height: 12px;background-color: #e3e9e9;margin: 0% auto;width: 96%;padding: 0% 2% 0% 2%;">

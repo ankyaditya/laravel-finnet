@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailableRS;
+use App\Mail\SendMailbackRS;
 
 class ServerController extends Controller
 {
@@ -121,6 +122,9 @@ class ServerController extends Controller
         $server->checked_date = $current_date_time;
         $server->step = 3;
         $server->save();
+        $server->id = $server->id;
+        $server->requestner_name = $server->requestner_name;
+        Mail::to('ankyaditya17@gmail.com')->send(new SendMailbackRS($server));
         return redirect()->route('server.index', ['id' => $id])->with('status','Request Approved');
     }
 }

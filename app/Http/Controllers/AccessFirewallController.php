@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailableFW;
+use App\Mail\SendMailbackFW;
 
 class AccessFirewallController extends Controller
 {
@@ -130,6 +131,9 @@ class AccessFirewallController extends Controller
         $firewallaccesss->checked_date = $current_date_time;
         $firewallaccesss->step = 3;
         $firewallaccesss->save();
+        $firewallaccesss->id = $firewallaccesss->id;
+        $firewallaccesss->requestner_name = $firewallaccesss->requestner_name;
+        Mail::to('ankyaditya17@gmail.com')->send(new SendMailbackFW($firewallaccesss));
         return redirect()->route('firewallaccess.index', ['id' => $id])->with('status','Request Approved');
     }
     
