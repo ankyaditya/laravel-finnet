@@ -24,6 +24,30 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $allfw = \App\AccessFirewall::all()->count();
+        $pendingfw = \App\AccessFirewall::where('step','0')->count();
+        $approvedfw = \App\AccessFirewall::where('step','3')->count();
+
+        $allrs = \App\Server::all()->count();
+        $pendingrs = \App\Server::where('step','0')->count();
+        $approvedrs = \App\Server::where('step','3')->count();
+
+        $allos = \App\UserOs::all()->count();
+        $pendingos = \App\UserOs::where('step','0')->count();
+        $approvedos = \App\UserOs::where('step','3')->count();
+
+        $data = array(
+            'allfw' => $allfw,
+            'pendingfw' => $pendingfw,
+            'approvedfw' => $approvedfw,
+            'allrs' => $allrs,
+            'pendingrs' => $pendingrs,
+            'approvedrs' => $approvedrs,
+            'allos' => $allos,
+            'pendingos' => $pendingos,
+            'approvedos' => $approvedos
+        );
+
+        return view('home',$data);
     }
 }

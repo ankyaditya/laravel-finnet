@@ -79,8 +79,7 @@
 
         #logo {
             max-width: 220px;
-            margin: 2% 0 0 5%;
-            float: left
+            margin: 0 auto;
         }
 
         #callout {
@@ -162,6 +161,7 @@
                 width: 97%;
             }
         }
+
     </style>
 
 </head>
@@ -169,18 +169,17 @@
 <body style="font-family: 'Catamaran',sans-serif;background-color: #ffffff;font-size: 18px;max-width: 550px;margin: 0 auto;">
     <div class="card" style="font-family: 'Catamaran',sans-serif;background-color: #e74c3c;font-size: 18px;max-width: 598px;margin: 0 auto;">
         <div class="wrapper">
-            <header style="width: 80%;">
-                <div id="logo" style="max-width: 220px;margin: 2% 0 0 5%;padding: 0% 2% 0% 2%;">
-                    <img src="{{asset('img/finnet.jpg')}}" style="max-width: 100%;">
+            <header style="width: 100%;">
+                <div id="logo">
+                    <img src="{{asset('img/finnet2.png')}}" style="max-width: 100%;">
                 </div>
             </header>
-            <div class="banner" style="margin-bottom: 3%;padding: 0% 2% 0% 2%;">
+            <div class="banner" style="margin-bottom: 3%;padding: 0% 0% 0% 0%;">
                 <img src="{{asset('img/infra.png')}}" style="max-width: 100%;">
             </div>
             <div class="satu-col" style=" color:#ffffff;padding: 0% 2% 0% 2%;">
                 <h1 style="text-align:center">Dear Infra Team</h1>
                 <p style="text-align: justify;">We are already have firewall access request from {{$firewallaccesss->requester_name}}. This is all data request:
-
                     <li style="margin-left:20px">
                         Project Name: {{$firewallaccesss->project_name}}
                     </li>
@@ -205,7 +204,6 @@
                     <li style="margin-left:20px">
                         Information: {{$firewallaccesss->description}}
                     </li>
-
                 </p>
 
             </div>
@@ -214,7 +212,7 @@
                     Please check this request immediately
                 </div>
             </div>
-            <div class="button-holder" style="text-align:center;"padding: 0% 2% 0% 2%;">
+            <div class="button-holder" style="text-align:center;" padding: 0% 2% 0% 2%;">
                 <a class="btn" href="#" target="_blank" style="text-decoration: none; font-weight: 800;letter-spacing: 1px;border-radius: 8px;">Work Now</a>
             </div>
             <div style="padding: 3% 0% 0% 0%">

@@ -11,6 +11,10 @@
         @endif
         <small>You are logged in!</small>
     </h1>
+    <br>
+    <small>Total Request : {{$allfw}} </small><br>
+    <small>Total Pending Request :  {{$pendingfw}} </small><br>
+    <small>Total Approved Request : {{$approvedfw}} </small><br>
 </section>
 <!--
 <div class="container">

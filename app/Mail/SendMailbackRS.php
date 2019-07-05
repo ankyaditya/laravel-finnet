@@ -16,11 +16,11 @@ class SendMailbackRS extends Mailable
      *
      * @return void
      */
-    public $useros;
+    public $server;
 
-    public function __construct($useros)
+    public function __construct($server)
     {
-        $this->useros = $useros;
+        $this->server = $server;
     }
 
     /**
@@ -30,6 +30,6 @@ class SendMailbackRS extends Mailable
      */
     public function build()
     {
-        return $this->subject("Request Server/Firewall/OS")->view('useros.mailback');
+        return $this->subject("Request Server/Firewall/OS")->view('server.mailback');
     }
 }
