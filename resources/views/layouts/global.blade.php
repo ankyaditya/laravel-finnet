@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>Finnet | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="{{asset('plugins/iCheck/flat/blue.css')}}">
   <!-- Morris chart -->
   <link rel="stylesheet" href="{{asset('plugins/morris/morris.css')}}">
+
   <!-- jvectormap -->
   <link rel="stylesheet" href="{{asset('plugins/jvectormap/jquery-jvectormap-1.2.2.css')}}">
   <!-- Date Picker -->
@@ -41,6 +42,8 @@
   <link rel="stylesheet" href="{{asset('plugins/select2/select2.min.css')}}">
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('plugins/datatables/dataTables.bootstrap4.css')}}">
+  <!--    bootstap-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -74,29 +77,96 @@
       </form>
 
       <!-- Right navbar links -->
+      <!--
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i class="fa fa-th-large"></i></a>
         </li>
       </ul>
+-->
+
+
+      <!-- Tasks: style can be found in dropdown.less -->
+
+      <!-- User Account: style can be found in dropdown.less -->
+      <nav class="navbar-static-top">
+        <div class="navbar-custom-menu">
+          <div style="float:right">
+            <ul class="nav navbar-nav">
+              <li class="dropdown user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="float:right">
+                  @if(\Auth::user())
+                  <img src="{{asset('storage/'.Auth::user()->avatar)}}" class="user-image" alt="User Image" style="width:30px; height:30px; float:center; border-radius:50%">
+                  <span class="hidden-xs" style="text-color:white">{{Auth::user()->name}}</span>
+                  @endif
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <div class="row">
+                      <div class="col-md-8 text-center" style="top: 50%;left: 18%;">
+                        <img src="{{asset('storage/'.Auth::user()->avatar)}}" class="profile-user-img" alt="User Image" style="width:120px; height:120px;  border-radius:50%; margin-right:50%;">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12 text-center" >
+                        <span style="vertical-align:center;color:white">{{Auth::user()->name}}</span>
+                      </div>
+                    </div>
+                  </li>
+                  <!-- Menu Body -->
+                  <li class="user-body">
+                    <div class="center" style="text-align:center">
+                      {{Auth::user()->roles}}
+                    </div>
+                    <!-- /.row -->
+                  </li>
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="#">
+                        <div class="tooltop"><i class="nav-icon fa  fa-user" style="float:center"></i>
+                          <span class="tooltiptext">Profile</span>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="pull-right">
+                      <a href="#">
+                        <div class="tooltop"><i class="nav-icon fa  fa-sign-out" style="float:center"></i>
+                          <span class="tooltiptext">Sign Out</span>
+                        </div>
+                      </a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <!-- Control Sidebar Toggle Button -->
+
+            </ul>
+          </div>
+        </div>
+      </nav>
     </nav>
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
+
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
+
       <a href="index3.html" class="brand-link">
-        <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{asset('img/finnet.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="width:30px; height:30px; border-radius:50%; opacity: .8">
         <span class="brand-text font-weight-light"><b>fin</b>net</span>
       </a>
 
       <!-- Sidebar -->
+
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           @if(\Auth::user())
           <div class="image">
-            <img src="{{asset('storage/'.Auth::user()->avatar)}}" class="img-circle elevation-2" alt="User Image">
+            <img src="{{asset('storage/'.Auth::user()->avatar)}}" class="img-circle elevation-2" alt="User Image" style="width:30px; height:30px";>
           </div>
           <div class="info">
             <a href="#" class="d-block">{{Auth::user()->name}}</a>
@@ -110,8 +180,8 @@
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item has-treeview menu">
-              <a href="{{route('home')}}" class="nav-link">
-                <i class="nav-icon fa fa-dashboard"></i>
+              <a href="{{route('home')}}" class="{{Request::is('home')?'nav-link active':'nav-link'}}">
+                <i class="nav-icon fa fa-home"></i>
                 <p>
                   Home
                   <i class="right fa fa-angle-left"></i>
@@ -119,7 +189,7 @@
               </a>
             </li>
             <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+              <a href="#" class="nav-link {{Request::is('users/create')?'active':''|| Request::is('users')?'active':''}}">
                 <i class="nav-icon fa fa-users"></i>
                 <p>
                   Manage Users
@@ -128,13 +198,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('users.create')}}" class="nav-link">
+                  <a href="{{route('users.create')}}" class="nav-link {{Request::is('users/create')?'active':''}} ">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>Tambah</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{route('users.index')}}" class="nav-link">
+                  <a href="{{route('users.index')}}" class="nav-link {{Request::is('users')?'active':''}}">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>Daftar</p>
                   </a>
@@ -142,7 +212,7 @@
               </ul>
             </li>
             <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+              <a href="#" class="nav-link {{Request::is('useros')?'active':''||Request::is('server')?'active':''}}">
                 <i class="nav-icon fa fa-laptop"></i>
                 <p>
                   Monitoring Server
@@ -151,23 +221,23 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('useros.index')}}" class="nav-link">
+                  <a href="{{route('useros.index')}}" class="nav-link {{Request::is('useros')?'active':''}}">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Data Request User OS</p>
+                    <p>Request User OS</p>
                   </a>
                 </li>
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('server.index')}}" class="nav-link">
+                  <a href="{{route('server.index')}}" class="nav-link {{Request::is('server')?'active':''}}">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Data Request Server</p>
+                    <p>Request Server</p>
                   </a>
                 </li>
               </ul>
             </li>
             <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+              <a href="#" class="nav-link {{Request::is('firewalls')?'active':''|| Request::is('firewallaccess')?'active':''}}">
                 <i class="nav-icon fa fa-edit"></i>
                 <p>
                   Data Request Firewall
@@ -176,17 +246,17 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('firewalls.index')}}" class="nav-link">
+                  <a href="{{route('firewalls.index')}}" class="nav-link {{Request::is('firewalls')?'active':''}}">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Data Request User Firewall</p>
+                    <p>Request User Firewall</p>
                   </a>
                 </li>
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('firewallaccess.index')}}" class="nav-link">
+                  <a href="{{route('firewallaccess.index')}}" class="nav-link {{Request::is('firewallaccess')?'active':''}}">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Data Request Access Firewall</p>
+                    <p>Request Access Firewall</p>
                   </a>
                 </li>
               </ul>
@@ -350,7 +420,7 @@
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Dashboard v2</li>
+                <!--                <li class="breadcrumb-item active">Dashboard v2</li>-->
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -372,42 +442,11 @@
         <b>Version</b> 3.0.0-alpha
       </div>
     </footer>
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-      @if(\Auth::user())
-      <div class="p-3">
-        <div class="col-xs-4 text-center">
-          <h5>{{Auth::user()->name}}</h5>
-          <h5>{{Auth::user()->role}}</h5>
-          <img src="{{asset('storage/'.Auth::user()->avatar)}}" class="img-circle" style="width:150px; height:150px; float:center; border-radius:50%;">
-          <p><small>{{Auth::user()->created_at}}</small></p>
-          <p><small>{{Auth::user()->status}}</small></p>
-        </div>
-        <div class="hahah">
-          <div class="middles">
-            <div class="container">
-              <div class="col-xs-4 text-center">
-                <lala>
-                  <button type="submit" class="btn btn-primatu">Button1</button>
-                </lala>
-
-                <lala>
-                  <button type="submit" class="btn btn-primatu">Button2</button>
-                </lala>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      @endif
-    </aside>
-    <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
 
   <!-- jQuery -->
+  <script src="{{asset('plugins/jquery/jquery.js')}}"></script>
   <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
   <!-- jQuery UI 1.11.4 -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -427,13 +466,13 @@
   <script src="{{asset('plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
   <!-- jQuery Knob Chart -->
   <script src="{{asset('plugins/knob/jquery.knob.js')}}"></script>
+  <!-- ChartJS 1.0.2 -->
+  <script src="{{asset('plugins/chartjs-old/Chart.min.js')}}"></script>
   <!-- daterangepicker -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
   <script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
   <!-- datepicker -->
-
   <script src="{{asset('plugins/datepicker/datepicak.js')}}"></script>
-
   <script src="{{asset('plugins/datepicker/bootstrap-datepicker.js')}}"></script>
   <!-- Bootstrap WYSIHTML5 -->
   <script src="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
@@ -462,6 +501,7 @@
   <!-- DataTables -->
   <script src="{{asset('plugins/datatables/jquery.dataTables.js')}}"></script>
   <script src="{{asset('plugins/datatables/dataTables.bootstrap4.js')}}"></script>
+
 
   <!-- page script -->
   <script>
@@ -547,25 +587,10 @@
       });
     });
   </script>
-
   <script>
     $(function() {
       $('#reservation').daterangepicker()
     })
-  </script>
-  
-  <script>
-    $(document).ready(function() {
-      $(".btn-smnet").on('click', function() {
-        $(".coverb").fadeIn('slow');
-        $(".popuup").fadeIn('slow');
-      });
-      $(".coverb").on('click', function() {
-        $(".coverb").fadeOut('slow');
-
-        $(".popuup").fadeOut('slow');
-      });
-    });
   </script>
 </body>
 
