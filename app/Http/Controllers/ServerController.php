@@ -79,6 +79,13 @@ class ServerController extends Controller
         $server->environtment = $request->get('environtment');
         $server->aplikasi = $request->get('aplikasi');
         $server->description = $request->get('description');
+        if ($request->file('file')) {
+            if ($server->file && file_exists(storage_path('app/public/' . $server->file))) {
+                \Storage::delete('public/' . $server->file);
+            }
+            $file = $request->file('file')->store('files', 'public');
+            $server->file = $file;
+        }
 
         $server->save();
         return redirect()->route('server.edit', ['id' => $id])->with('status','Request succesfully updated');

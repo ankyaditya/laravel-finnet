@@ -64,17 +64,19 @@ class UserFirewallController extends Controller
         return redirect()->route('firewalls.index')->with('status', 'Request successfully delete');
     }
 
-    public function approvemgr($id){
+    public function approvemgr($id)
+    {
         $userfirewalls = \App\UserFirewall::findOrFail($id);
         $userfirewalls->status_approval = 'Approved';
         $userfirewalls->approved_by = \Auth::user()->name;
         $userfirewalls->step = 1;
         $userfirewalls->save();
-        return redirect()->route('firewalls.index', ['id' => $id])->with('status','Request Approved');
+        return redirect()->route('firewalls.index', ['id' => $id])->with('status', 'Request Approved');
         //return redirect()->route('firewalls.index')->with('status', 'Request Approved');
     }
 
-    public function approvestaff($id){
+    public function approvestaff($id)
+    {
         $current_date_time = Carbon::now();
         $userfirewalls = \App\UserFirewall::findOrFail($id);
         $userfirewalls->status_checked = 'Approved';
@@ -82,7 +84,7 @@ class UserFirewallController extends Controller
         $userfirewalls->worked_date = $current_date_time;
         $userfirewalls->step = 2;
         $userfirewalls->save();
-        return redirect()->route('firewalls.index', ['id' => $id])->with('status','Request Approved');
+        return redirect()->route('firewalls.index', ['id' => $id])->with('status', 'Request Approved');
         //return redirect()->route('firewalls.index')->with('status', 'Request Approved');
     }
 }

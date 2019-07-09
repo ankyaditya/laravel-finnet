@@ -25,15 +25,15 @@ class HomeController extends Controller
     public function index()
     {
         $allfw = \App\AccessFirewall::all()->count();
-        $pendingfw = \App\AccessFirewall::where('step','0')->count();
+        $pendingfw = \App\AccessFirewall::where('step','0')->orWhere('step','1')->orWhere('step','2')->count();
         $approvedfw = \App\AccessFirewall::where('step','3')->count();
 
         $allrs = \App\Server::all()->count();
-        $pendingrs = \App\Server::where('step','0')->count();
+        $pendingrs = \App\Server::where('step','0')->orWhere('step','1')->orWhere('step','2')->count();
         $approvedrs = \App\Server::where('step','3')->count();
 
         $allos = \App\UserOs::all()->count();
-        $pendingos = \App\UserOs::where('step','0')->count();
+        $pendingos = \App\UserOs::where('step','0')->orWhere('step','1')->orWhere('step','2')->count();
         $approvedos = \App\UserOs::where('step','3')->count();
 
         $data = array(

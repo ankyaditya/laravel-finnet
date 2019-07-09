@@ -82,8 +82,7 @@
                             <br>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="avatar" name="avatar">
-                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                    <input type="file" class="form-control" id="avatar" name="avatar">
                                 </div>
                             </div>
                             <small class="text-muted">Kosongkan jika tidak ingin mengubah avatar</small>

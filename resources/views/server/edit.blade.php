@@ -88,7 +88,24 @@
                             <label for="description">Description</label>
                             <textarea name="description" id="description" class="form-control" required>{{old('description') ? old('description'): $server->description}}</textarea>
                         </div>
-
+                        <div class="form-group">
+                            <label for="file">File</label>
+                            <br>
+                            Current File: <br>
+                            @if($server->file)
+                            {{asset('storage/'.$server->file)}}
+                            <br>
+                            @else
+                            No File
+                            @endif
+                            <br>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="form-control" id="file" name="file">
+                                </div>
+                            </div>
+                            <small class="text-muted">Kosongkan jika tidak ingin mengubah file</small>
+                        </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary" value="Simpan">Submit</button>
                             <a class="btn btn-default float-right" href="{{route('server.index')}}">Cancel</a>
