@@ -66,7 +66,7 @@
                         {{$uos->description}}
                     </td>
                     <td>
-                        {{$uos->created_at}}
+                        {{$uos->request_date}}
                     </td>
                     <td>
                         @if($uos->worked_date == NULL)

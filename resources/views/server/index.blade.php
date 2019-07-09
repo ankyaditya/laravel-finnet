@@ -73,7 +73,7 @@
                         {{$serv->description}}
                     </td>
                     <td>
-                        {{$serv->created_at}}
+                        {{$serv->request_date}}
                     </td>
                     <td>
                         @if($serv->worked_date == NULL)

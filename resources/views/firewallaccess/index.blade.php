@@ -72,7 +72,7 @@
                         {{$firewallaccess->project_name}}
                     </td>
                     <td>
-                        {{$firewallaccess->created_at}}
+                        {{$firewallaccess->request_date}}
                     </td>
                     <td>
                         @if($firewallaccess->worked_date == NULL)

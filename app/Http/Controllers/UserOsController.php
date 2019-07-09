@@ -39,12 +39,14 @@ class UserOsController extends Controller
     public function store(Request $request)
     {
         $useros = new \App\UserOs;
+        $current_date_time = Carbon::now();
         $useros->requester_name = \Auth::user()->name;
         $useros->project_name = $request->get('project_name');
         $useros->source = $request->get('source');
         $useros->username = $request->get('username');
         $useros->roles = $request->get('roles');
         $useros->description = $request->get('description');
+        $useros->request_date = $current_date_time;
         $useros->step = 0;
 
         $useros->save();

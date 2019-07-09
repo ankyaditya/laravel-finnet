@@ -43,6 +43,7 @@ class AccessFirewallController extends Controller
     public function store(Request $request)
     {
         $firewallaccesss = new \App\AccessFirewall;
+        $current_date_time = Carbon::now();
         $firewallaccesss->requester_name = \Auth::user()->name;
         $firewallaccesss->project_name = $request->get('project_name');
         $firewallaccesss->source = $request->get('source');
@@ -50,6 +51,7 @@ class AccessFirewallController extends Controller
         $firewallaccesss->port = $request->get('port');
         $firewallaccesss->access_period = $request->get('access_period');
         $firewallaccesss->description = $request->get('description');
+        $firewallaccesss->request_date = $current_date_time;
         $firewallaccesss->step = 0;
         $firewallaccesss->save();
         $firewallaccesss->id = $firewallaccesss->id;

@@ -36,6 +36,7 @@ class ServerController extends Controller
     public function store(Request $request)
     {
         $server = new \App\Server;
+        $current_date_time = Carbon::now();
         $server->requester_name = \Auth::user()->name;
         $server->os = $request->get('os');
         $server->ram = $request->get('ram');
@@ -45,6 +46,7 @@ class ServerController extends Controller
         $server->aplikasi = $request->get('aplikasi');
         $server->file = $request->get('file');
         $server->description = $request->get('description');
+        $server->request_date = $current_date_time;
         $server->step = 0;
         if ($request->file('file')) {
             $file = $request->file('file')->store('files', 'public');
