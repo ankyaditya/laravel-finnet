@@ -14,7 +14,7 @@
             <!-- general form elements -->
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">User</h3>
+                    <h3 class="card-title">Edit Data</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -24,48 +24,49 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="project_name">Project Name</label>
-                            <select class="form-control" style="width: 100%;" id="project_name" name="project_name">
+                            <select class="form-control select2" style="width: 100%;" id="project_name" name="project_name" required>
                                 <option selected="selected">{{$firewallaccesss->project_name}}</option>
-                                <option>A</option>
-                                <option>B</option>
-                                <option>C</option>
-                                <option>D</option>
-                                <option>E</option>
-                                <option>F</option>
+                                <option>Bill Payment Aggregator</option>
+                                <option>Electronic Payment Platform</option>
+                                <option>Online Payment Solution</option>
+                                <option>CHDE</option>
+                                <option>Infrastructure Crew</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Source</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                </div>
-                                <input value="{{old('source') ? old('source'): $firewallaccesss->source}}" type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask id="source" name="source">
-                            </div>
+                            <label>IP Source</label>
+                            <select class="form-control select2" style="width: 100%;" id="source" name="source" required>
+                                <option selected="selected">{{$firewallaccesss->source}}</option>
+                                @foreach($ipaddress as $ip)
+                                    <option value="{{$ip->ip}} - {{$ip->name}}">{{$ip->ip}} - {{$ip->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label>Destination</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                </div>
-                                <input value="{{old('destination') ? old('destination'): $firewallaccesss->destination}}" type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask id="destination" name="destination">
-                            </div>
+                            <label>IP Destination</label>
+                            <select class="form-control select2" style="width: 100%;" id="destination" name="destination" required>
+                                <option selected="selected">{{$firewallaccesss->destination}}</option>
+                                @foreach($ipaddress as $ip)
+                                    <option value="{{$ip->ip}} - {{$ip->name}}">{{$ip->ip}} - {{$ip->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Port</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                 </div>
-                                <input value="{{old('port') ? old('port'): $firewallaccesss->port}}" type="number" class="form-control" id="port" name="port">
+                                <input value="{{old('port') ? old('port'): $firewallaccesss->port}}" type="number" class="form-control" id="port" name="port" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" id="description" class="form-control">{{old('description') ? old('description'): $firewallaccesss->description}}</textarea>
+                            <textarea name="description" id="description" class="form-control" required>{{old('description') ? old('description'): $firewallaccesss->description}}</textarea>
                         </div>
 
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary" value="Simpan">Submit</button>
-                            <button type="submit" class="btn btn-default float-right">Cancel</button>
+                            <a class="btn btn-default float-right" href="{{route('firewallaccess.index')}}">Cancel</a>
                         </div>
                 </form>
             </div>

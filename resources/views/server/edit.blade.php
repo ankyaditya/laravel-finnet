@@ -1,6 +1,6 @@
 @extends('layouts.global')
 @section("title") Edit @endsection
-@section("subtitle") Access Firewall @endsection
+@section("subtitle") Request Server @endsection
 @section("content")
 <div class="container-fluid">
     @if(session('status'))
@@ -14,58 +14,84 @@
             <!-- general form elements -->
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">User</h3>
+                    <h3 class="card-title">Server Data</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form enctype="multipart/form-data" action="{{route('firewallaccess.update', ['id'=>$firewallaccesss->id])}}" method="POST">
+                <form enctype="multipart/form-data" action="{{route('server.update', ['id'=>$server->id])}}" method="POST">
                     @csrf
                     <input type="hidden" value="PUT" name="_method">
                     <div class="card-body">
-                        <div class="form-group">
-                            <label for="project_name">Project Name</label>
-                            <select class="form-control" style="width: 100%;" id="project_name" name="project_name">
-                                <option selected="selected">{{$firewallaccesss->project_name}}</option>
-                                <option>A</option>
-                                <option>B</option>
-                                <option>C</option>
-                                <option>D</option>
-                                <option>E</option>
-                                <option>F</option>
+                    <div class="form-group">
+                            <label for="os">Operating System</label>
+                            <select class="form-control select2" style="width: 100%;" id="os" name="os" required>
+                                <option selected="selected">{{$server->os}}</option>
+                                <option>Solaris</option>
+                                <option>FreeBSD</option>
+                                <option>Ubuntu</option>
+                                <option>Centos</option>
+                                <option>Windwos</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Source</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                </div>
-                                <input value="{{old('source') ? old('source'): $firewallaccesss->source}}" type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask id="source" name="source">
-                            </div>
+                            <label for="ram">RAM</label>
+                            <select class="form-control select2" style="width: 100%;" id="ram" name="ram" required>
+                            <option selected="selected">{{$server->ram}}</option>
+                                <option>2</option>
+                                <option>4</option>
+                                <option>8</option>
+                                <option>16</option>
+                                <option>32</option>
+                                <option>64</option>
+                            </select>
+                            <small>in GB</small>
                         </div>
                         <div class="form-group">
-                            <label>Destination</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                </div>
-                                <input value="{{old('destination') ? old('destination'): $firewallaccesss->destination}}" type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask id="destination" name="destination">
-                            </div>
+                            <label for="cpu">CPU</label>
+                            <select class="form-control select2" style="width: 100%;" id="cpu" name="cpu" required>
+                                <option selected="selected">{{$server->cpu}}</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label>Port</label>
+                            <label>disk</label>
                             <div class="input-group">
-                                <div class="input-group-prepend">
-                                </div>
-                                <input value="{{old('port') ? old('port'): $firewallaccesss->port}}" type="number" class="form-control" id="port" name="port">
+                                <input value="{{old('disk') ? old('disk'): $server->disk}}" type="number" class="form-control" id="disk" name="disk" required>
+                            </div>
+                            <small>in GB</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="environtment">Environtment</label>
+                            <select class="form-control select2" style="width: 100%;" id="environtment" name="environtment" required>
+                            <option selected="selected">{{$server->environtment}}</option>
+                                <option>Dev</option>
+                                <option>Prod</option>
+                                <option>Stagging</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Aplikasi</label>
+                            <div class="input-group">
+                                <input value="{{old('aplikasi') ? old('aplikasi'): $server->aplikasi}}" type="text" class="form-control" id="aplikasi" name="aplikasi" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" id="description" class="form-control">{{old('description') ? old('description'): $firewallaccesss->description}}</textarea>
+                            <textarea name="description" id="description" class="form-control" required>{{old('description') ? old('description'): $server->description}}</textarea>
                         </div>
 
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary" value="Simpan">Submit</button>
-                            <button type="submit" class="btn btn-default float-right">Cancel</button>
+                            <a class="btn btn-default float-right" href="{{route('server.index')}}">Cancel</a>
                         </div>
                 </form>
             </div>

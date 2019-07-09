@@ -155,7 +155,7 @@
                             <a class="btn btn-success btn-sm disabled">Done</a>
                         @endif
 
-                        @if(Auth::user()->roles == "USER" && Auth::user()->name == $firewallaccess->requester_name)
+                        @if(Auth::user()->roles == "USER" && Auth::user()->name == $firewallaccess->requester_name && $firewallaccess->step == 0)
                             <a class="btn btn-info text-white btn-sm" href="{{route('firewallaccess.edit', ['id'=>$firewallaccess->id])}}">Edit</a>
                         @endif
                         <a class="btn btn-info text-white btn-sm" href="{{route('firewallaccess.show', ['id'=>$firewallaccess->id])}}">Detail</a>

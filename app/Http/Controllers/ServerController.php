@@ -65,17 +65,28 @@ class ServerController extends Controller
 
     public function edit($id)
     {
-        //
+        $server = \App\Server::findOrFail($id);
+        return view('server.edit', ['server' => $server]);
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $server = \App\Server::findOrFail($id);
+        $server->os = $request->get('os');
+        $server->ram = $request->get('ram');
+        $server->cpu = $request->get('cpu');
+        $server->disk = $request->get('disk');
+        $server->environtment = $request->get('environtment');
+        $server->aplikasi = $request->get('aplikasi');
+        $server->description = $request->get('description');
+
+        $server->save();
+        return redirect()->route('server.edit', ['id' => $id])->with('status','Request succesfully updated');
     }
 
     public function destroy($id)
     {
-        //
+
     }
 
     public function approvemgr($id){
@@ -96,7 +107,7 @@ class ServerController extends Controller
         $server->status_approval = 'Disapprove';
         $server->approved_by = \Auth::user()->name;
         $server->approved_date = $current_date_time;
-        $server->step = 0;
+        $server->step = -1;
         $server->save();
 
         return redirect()->route('server.index', ['id' => $id])->with('status','Request Disaprove');

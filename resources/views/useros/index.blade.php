@@ -155,6 +155,9 @@
                         @elseif($uos->step == 3 && $step != 4 || Auth::user()->roles == "ADMIN" || Auth::user()->roles == "STAFF")
                             <a class="btn btn-success btn-sm disabled">Done</a>        
                         @endif
+                        @if(Auth::user()->roles == "USER" && Auth::user()->name == $uos->requester_name && $uos->step == 0)
+                            <a class="btn btn-info text-white btn-sm" href="{{route('useros.edit', ['id'=>$uos->id])}}">Edit</a>
+                        @endif
                         <a class="btn btn-info text-white btn-sm" href="{{route('useros.show', ['id'=>$uos->id])}}">Detail</a>
                     </td>
                 </tr>

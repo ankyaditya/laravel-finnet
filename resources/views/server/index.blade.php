@@ -162,6 +162,9 @@
                         @elseif($serv->step == 3 && $step != 4 || Auth::user()->roles == "ADMIN" || Auth::user()->roles == "STAFF")
                             <a class="btn btn-success btn-sm disabled">Done</a>        
                         @endif
+                        @if(Auth::user()->roles == "USER" && Auth::user()->name == $serv->requester_name && $serv->step == 0)
+                            <a class="btn btn-info text-white btn-sm" href="{{route('server.edit', ['id'=>$serv->id])}}">Edit</a>
+                        @endif
                         <a class="btn btn-info text-white btn-sm" href="{{route('server.show', ['id'=>$serv->id])}}">Detail</a>
                     </td>
                 </tr>

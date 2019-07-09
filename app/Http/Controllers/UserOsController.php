@@ -61,12 +61,26 @@ class UserOsController extends Controller
 
     public function edit($id)
     {
-        //
+        $useros = \App\UserOs::findOrFail($id);
+        $ipaddress = \App\IpAddress::all();
+        $data = array(
+            'ipaddress' => $ipaddress,
+            'useros' => $useros,
+        );
+        return view('useros.edit', $data);
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $useros = \App\UserOs::findOrFail($id);
+        $useros->project_name = $request->get('project_name');
+        $useros->source = $request->get('source');
+        $useros->username = $request->get('username');
+        $useros->roles = $request->get('roles');
+        $useros->description = $request->get('description');
+
+        $useros->save();
+        return redirect()->route('useros.edit', ['id' => $id])->with('status','Request succesfully updated');
     }
 
     public function destroy($id)
@@ -92,7 +106,7 @@ class UserOsController extends Controller
         $useros->status_approval = 'Disapprove';
         $useros->approved_by = \Auth::user()->name;
         $useros->approved_date = $current_date_time;
-        $useros->step = 0;
+        $useros->step = -1;
         $useros->save();
 
         return redirect()->route('useros.index', ['id' => $id])->with('status','Request Disaprove');

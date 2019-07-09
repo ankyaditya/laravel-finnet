@@ -66,7 +66,12 @@ class AccessFirewallController extends Controller
     public function edit($id)
     {
         $firewallaccesss = \App\AccessFirewall::findOrFail($id);
-        return view('firewallaccess.edit', ['firewallaccesss' => $firewallaccesss]);
+        $ipaddress = \App\IpAddress::all();
+        $data = array(
+            'ipaddress' => $ipaddress,
+            'firewallaccesss' => $firewallaccesss,
+        );
+        return view('firewallaccess.edit', $data);
     }
 
     public function update(Request $request, $id)
@@ -105,7 +110,7 @@ class AccessFirewallController extends Controller
         $firewallaccesss->status_approval = 'Disapprove';
         $firewallaccesss->approved_by = \Auth::user()->name;
         $firewallaccesss->approved_date = $current_date_time;
-        $firewallaccesss->step = 0;
+        $firewallaccesss->step = -1;
         $firewallaccesss->save();
 
         return redirect()->route('firewallaccess.index', ['id' => $id])->with('status','Request Disaprove');

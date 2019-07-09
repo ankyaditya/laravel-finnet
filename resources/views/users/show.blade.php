@@ -42,6 +42,10 @@
                     <br>
                     <b>Roles:</b> <br>
                     {{$user->roles}}
+                    <br>
+                    <br>
+                    <b>Divisi:</b> <br>
+                    {{$user->divisi}}
                 </div>
             </div>
         </div>
