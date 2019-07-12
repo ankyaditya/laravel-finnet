@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\AccessFirewall;
-
-
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\Exports\AccessExport;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailableFW;
 use App\Mail\SendMailbackFW;
+use App\Exports\AccessExport;
+use Excel;
 
 class AccessFirewallController extends Controller
 {
@@ -25,9 +22,16 @@ class AccessFirewallController extends Controller
         });
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $firewallaccesss = \App\AccessFirewall::all();
+
+        $from = $request->get('from');
+        $to = $request->get('to');
+        if ($from && $to) {
+            $firewallaccesss = \App\AccessFirewall::whereBetween('request_date', [$from, $to])->get();
+        }
+
         return view('firewallaccess.index', ['firewallaccesss' => $firewallaccesss]);
     }
 
@@ -37,7 +41,7 @@ class AccessFirewallController extends Controller
         $data = array(
             'ipaddress' => $ipaddress
         );
-        return view("firewallaccess.create",$data);
+        return view("firewallaccess.create", $data);
     }
 
     public function store(Request $request)
@@ -86,15 +90,14 @@ class AccessFirewallController extends Controller
         $firewallaccesss->description = $request->get('description');
 
         $firewallaccesss->save();
-        return redirect()->route('firewallaccess.edit', ['id' => $id])->with('status','Request succesfully updated');
+        return redirect()->route('firewallaccess.edit', ['id' => $id])->with('status', 'Request succesfully updated');
     }
 
     public function destroy($id)
-    {
-        
-    }
+    { }
 
-    public function approvemgr($id){
+    public function approvemgr($id)
+    {
         $current_date_time = Carbon::now();
         $firewallaccesss = \App\AccessFirewall::findOrFail($id);
         $firewallaccesss->status_approval = 'Approved';
@@ -103,10 +106,11 @@ class AccessFirewallController extends Controller
         $firewallaccesss->step = 1;
         $firewallaccesss->save();
 
-        return redirect()->route('firewallaccess.index', ['id' => $id])->with('status','Request Approved');
+        return redirect()->route('firewallaccess.index', ['id' => $id])->with('status', 'Request Approved');
     }
 
-    public function disapprovemgr($id){
+    public function disapprovemgr($id)
+    {
         $current_date_time = Carbon::now();
         $firewallaccesss = \App\AccessFirewall::findOrFail($id);
         $firewallaccesss->status_approval = 'Disapprove';
@@ -115,10 +119,11 @@ class AccessFirewallController extends Controller
         $firewallaccesss->step = -1;
         $firewallaccesss->save();
 
-        return redirect()->route('firewallaccess.index', ['id' => $id])->with('status','Request Disaprove');
+        return redirect()->route('firewallaccess.index', ['id' => $id])->with('status', 'Request Disaprove');
     }
 
-    public function approvestaffw($id){
+    public function approvestaffw($id)
+    {
         $current_date_time = Carbon::now();
         $firewallaccesss = \App\AccessFirewall::findOrFail($id);
         $firewallaccesss->status_worked = 'Approved';
@@ -127,10 +132,11 @@ class AccessFirewallController extends Controller
         $firewallaccesss->step = 2;
         $firewallaccesss->save();
 
-        return redirect()->route('firewallaccess.index', ['id' => $id])->with('status','Request Approved');
+        return redirect()->route('firewallaccess.index', ['id' => $id])->with('status', 'Request Approved');
     }
 
-    public function approvestaffc($id){
+    public function approvestaffc($id)
+    {
         $current_date_time = Carbon::now();
         $firewallaccesss = \App\AccessFirewall::findOrFail($id);
         $firewallaccesss->status_checked = 'Approved';
@@ -141,10 +147,11 @@ class AccessFirewallController extends Controller
         $firewallaccesss->id = $firewallaccesss->id;
         $firewallaccesss->requestner_name = $firewallaccesss->requestner_name;
         Mail::to('ankyaditya17@gmail.com')->send(new SendMailbackFW($firewallaccesss));
-        return redirect()->route('firewallaccess.index', ['id' => $id])->with('status','Request Approved');
+        return redirect()->route('firewallaccess.index', ['id' => $id])->with('status', 'Request Approved');
     }
-    
-    public function exportir(){
-		return Excel::download(new AccessExport, 'Access_firewal_finnet.xlsx');
+
+    public function export()
+    {
+        return Excel::download(new AccessExport, 'Access_firewal_finnet.xlsx');
     }
 }

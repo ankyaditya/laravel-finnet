@@ -1,6 +1,6 @@
 @extends('layouts.global')
-@section("title") List Request @endsection
-@section("subtitle") User OS @endsection
+@section("title") List Order @endsection
+@section("subtitle") Link @endsection
 @section("content")
 @if(session('status'))
 <div class="alert alert-success">
@@ -9,12 +9,12 @@
 @endif
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Data Request</h3>
+        <h3 class="card-title">Data Order</h3>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
         @if(Auth::user()->roles == "USER")
-        <a href="{{route('useros.create')}}" style="padding:13px;" class="btn btn-app">
+        <a href="{{route('orderlink.create')}}" style="padding:13px;" class="btn btn-app">
             <i class="fa fa-edit"></i> Tambah
         </a>
         @else
@@ -24,7 +24,7 @@
         @endif
 
         @if(Auth::user()->roles != "USER")
-        <a href="{{route('useros.export')}}" class="btn btn-success my-3" target="_blank" style="float:right;margin-right:5px;">
+        <a href="{{route('orderlink.export')}}" class="btn btn-success my-3" target="_blank" style="float:right;margin-right:5px;">
             <div class="tooltop">
                 <i class="nav-icon fa  fa-download"></i>
                 <span class="tooltiptextteng">Unduh</span>
@@ -32,7 +32,7 @@
         </a>
         @endif
 
-        <form action="{{route('useros.index')}}">
+        <form action="{{route('orderlink.index')}}">
             <input type="text" name="from" id="from" style="display:none" value="{{Request::get('from')}}">
             <input type="text" name="to" id="to" style="display:none" value="{{Request::get('to')}}">
 
@@ -58,135 +58,152 @@
                     <th>No</th>
                     <th>Id Request</th>
                     <th>Requester Name</th>
-                    <th>Username</th>
-                    <th>Source</th>
-                    <th>Role</th>
-                    <th>Project Name</th>
-                    <th>Description</th>
+                    <th>Nama Perusahaan</th>
+                    <th>Alamat Data Center</th>
+                    <th>No. Telepon Referensi</th>
+                    <th>Nama PIC</th>
+                    <th>No.Telp & Email PIC</th>
+                    <th>Provider Link</th>
+                    <th>Jenis Link</th>
+                    <th>Backhaul</th>
+                    <th>Bandwidth Link</th>
+                    <th>Beban Instalasi Kabel Gedung (IKG)</th>
+                    <th>Delivery Target Date</th>
                     <th>Request Date</th>
                     <th>Worked Date</th>
-                    <th>Checked by</th>
                     <th>Status Cheked</th>
-                    <th>Approved by</th>
+                    <th>Status Worked</th>
                     <th>Status Approval</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($useros as $uos)
+                @foreach($orderlink as $olink)
                 <tr>
                     <td>{{$loop->iteration}}</td>
-                    <td>OS{{$uos->id}}</td>
-                    <td>{{$uos->requester_name}}</td>
+                    <td>OL{{$olink->id}}</td>
+                    <td>{{$olink->requester_name}}</td>
                     <td>
-                        {{$uos->username}}
+                        {{$olink->namaperusahaan}}
                     </td>
                     <td>
-                        {{$uos->source}}
+                        {{$olink->address}}
                     </td>
                     <td>
-                        {{$uos->roles}}
+                        {{$olink->notelpon}}
                     </td>
                     <td>
-                        {{$uos->project_name}}
+                        {{$olink->namapic}}
                     </td>
                     <td>
-                        {{$uos->description}}
+                        {{$olink->nopic}} - {{$olink->emailpic}}
                     </td>
                     <td>
-                        {{$uos->request_date}}
+                        {{$olink->providerlink}}
                     </td>
                     <td>
-                        @if($uos->worked_date == NULL)
+                        {{$olink->jenislink}}
+                    </td>
+                    <td>
+                        {{$olink->backhaul}}
+                    </td>
+                    <td>
+                        {{$olink->bandwidthlink}}
+                    </td>
+                    <td>
+                        {{$olink->ikg}}
+                    </td>
+                    <td>
+                        {{$olink->targetdate}}
+                    </td>
+                    <td>
+                        {{$olink->request_date}}
+                    </td>
+                    <td>
+                        @if($olink->worked_date == NULL)
                         <span class="badge badge-info">
                             Waiting
                         </span>
                         @else
-                        {{$uos->worked_date}}
+                        {{$olink->worked_date}}
                         @endif
                     </td>
                     <td>
-                        @if($uos->checked_by == NULL)
-                        <span class="badge badge-info">
-                            Waiting
-                        </span>
-                        @else
-                        {{$uos->checked_by}}
-                        @endif
-                    </td>
-                    <td>
-                        @if($uos->status_checked == "Pending")
+                        @if($olink->status_checked == "Pending")
                         <span class="badge badge-warning">
-                            {{$uos->status_checked}}
+                            {{$olink->status_checked}}
                         </span>
                         @else
                         <span class="badge badge-success">
-                            {{$uos->status_checked}}
+                            {{$olink->status_checked}}
                         </span>
                         @endif
                     </td>
                     <td>
-                        @if($uos->approved_by == NULL)
-                        <span class="badge badge-info">
-                            Waiting
+                        @if($olink->status_worked == "Pending")
+                        <span class="badge badge-warning">
+                            {{$olink->status_checked}}
                         </span>
                         @else
-                        {{$uos->approved_by}}
+                        <span class="badge badge-success">
+                            {{$olink->status_worked}}
+                        </span>
                         @endif
                     </td>
                     <td>
-                        @if($uos->status_approval == "Approved")
+                        @if($olink->status_approval == "Approved")
                         <span class="badge badge-success">
-                            {{$uos->status_approval}}
+                            {{$olink->status_approval}}
                         </span>
-                        @elseif($uos->status_approval == "Pending")
+                        @elseif($olink->status_approval == "Pending")
                         <span class="badge badge-warning">
-                            {{$uos->status_approval}}
+                            {{$olink->status_approval}}
                         </span>
                         @else
                         <span class="badge badge-danger">
-                            {{$uos->status_approval}}
+                            {{$olink->status_approval}}
                         </span>
                         @endif
                     </td>
                     <td>
+
                         @if(Auth::user()->roles == "USER")
                         <?php $step = 4; ?>
                         @else
                         <?php $step = 1; ?>
                         @endif
 
-
-                        @if(Auth::user()->roles == "ADMIN" && $uos->status_approval == "Pending")
-                        <form action="{{route('useros.approvemgr', ['id'=>$uos->id])}}" method="POST">
+                        @if(Auth::user()->roles == "ADMIN" && $olink->status_approval == "Pending")
+                        <form action="{{route('orderlink.approvemgr', ['id'=>$olink->id])}}" method="POST">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
                             <input type="submit" class="btn btn-success btn-sm" value="Approve">
                         </form>
-                        <form action="{{route('useros.disapprovemgr', ['id'=>$uos->id])}}" method="POST">
+                        <form action="{{route('orderlink.disapprovemgr', ['id'=>$olink->id])}}" method="POST">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
                             <input type="submit" class="btn btn-danger btn-sm" value="Disapprove">
                         </form>
-                        @elseif(Auth::user()->roles == "STAFF" && $uos->step == 1)
-                        <form class="d-inline" action="{{route('useros.approvestaffw', ['id'=>$uos->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
+                        @elseif(Auth::user()->roles == "STAFF" && $olink->step == 1)
+                        <form class="d-inline" action="{{route('orderlink.approvestaffw', ['id'=>$olink->id])}}" method="POST">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
                             <input type="submit" class="btn btn-success btn-sm" value="Approve">
                         </form>
-                        @elseif(Auth::user()->roles == "STAFF" && $uos->step == 2)
-                        <form class="d-inline" action="{{route('useros.approvestaffc', ['id'=>$uos->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
+                        @elseif(Auth::user()->roles == "STAFF" && $olink->step == 2)
+                        <form class="d-inline" action="{{route('orderlink.approvestaffc', ['id'=>$olink->id])}}" method="POST">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
                             <input type="submit" class="btn btn-success btn-sm" value="Approve">
                         </form>
-                        @elseif($uos->step == 3 && $step != 4 || Auth::user()->roles == "ADMIN" || Auth::user()->roles == "STAFF")
+                        @elseif($olink->step == 3 && $step != 4 || Auth::user()->roles == "ADMIN" || Auth::user()->roles == "STAFF")
                         <a class="btn btn-success btn-sm disabled">Done</a>
                         @endif
-                        @if(Auth::user()->roles == "USER" && Auth::user()->name == $uos->requester_name && $uos->step == 0)
-                        <a class="btn btn-info text-white btn-sm" href="{{route('useros.edit', ['id'=>$uos->id])}}">Edit</a>
+
+                        @if(Auth::user()->roles == "USER" && Auth::user()->name == $olink->requester_name && $olink->step == 0)
+                        <a class="btn btn-info text-white btn-sm" href="{{route('orderlink.edit', ['id'=>$olink->id])}}">Edit</a>
                         @endif
-                        <a class="btn btn-info text-white btn-sm" href="{{route('useros.show', ['id'=>$uos->id])}}">Detail</a>
+                        <a class="btn btn-info text-white btn-sm" href="{{route('orderlink.show', ['id'=>$olink->id])}}">Detail</a>
                     </td>
                 </tr>
                 @endforeach

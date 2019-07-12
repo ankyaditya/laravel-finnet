@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailableRS;
 use App\Mail\SendMailbackRS;
+use Excel;
+use App\Exports\ServerExport;
 
 class ServerController extends Controller
 {
@@ -22,9 +24,16 @@ class ServerController extends Controller
         
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $server = \App\Server::all();
+
+        $from = $request->get('from');
+        $to = $request->get('to');
+        if ($from && $to) {
+            $server = \App\Server::whereBetween('request_date', [$from, $to])->get();
+        }
+
         return view('server.index', ['server' => $server]);
     }
 
@@ -146,5 +155,10 @@ class ServerController extends Controller
         $server->requestner_name = $server->requestner_name;
         Mail::to('ankyaditya17@gmail.com')->send(new SendMailbackRS($server));
         return redirect()->route('server.index', ['id' => $id])->with('status','Request Approved');
+    }
+
+    public function export()
+    {
+        return Excel::download(new ServerExport, 'Request_server_finnet.xlsx');
     }
 }

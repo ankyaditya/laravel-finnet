@@ -2,12 +2,12 @@
 @section("title") List Request @endsection
 @section("subtitle") User Firewall @endsection
 @section("content")
+@if(session('status'))
+<div class="alert alert-success">
+    {{session('status')}}
+</div>
+@endif
 <div class="card">
-    @if(session('status'))
-    <div class="alert alert-success">
-        {{session('status')}}
-    </div>
-    @endif
     <div class="card-header">
         <h3 class="card-title">Data Users</h3>
     </div>
@@ -54,7 +54,7 @@
                             Waiting
                         </span>
                         @else
-                            {{$firewall->worked_date}}
+                        {{$firewall->worked_date}}
                         @endif
                     </td>
                     <td>
@@ -63,7 +63,7 @@
                             Waiting
                         </span>
                         @else
-                            {{$firewall->checked_by}}
+                        {{$firewall->checked_by}}
                         @endif
                     </td>
                     <td>
@@ -83,7 +83,7 @@
                             Waiting
                         </span>
                         @else
-                            {{$firewall->approved_by}}
+                        {{$firewall->approved_by}}
                         @endif
                     </td>
                     <td>
@@ -102,21 +102,21 @@
                         @endif
                     </td>
                     <td>
-                    @if(Auth::user()->roles == "ADMIN" && $firewall->status_approval == "Pending")
+                        @if(Auth::user()->roles == "ADMIN" && $firewall->status_approval == "Pending")
                         <form class="d-inline" action="{{route('firewalls.approvemgr', ['id'=>$firewall->id])}}" method="POST" onsubmit="return confirm('Approve This User?')">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
                             <input type="submit" class="btn btn-success btn-sm" value="Approve">
                         </form>
-                    @elseif(Auth::user()->roles == "STAFF" && $firewall->step == 1)
+                        @elseif(Auth::user()->roles == "STAFF" && $firewall->step == 1)
                         <form class="d-inline" action="{{route('firewalls.approvestaff', ['id'=>$firewall->id])}}" method="POST" onsubmit="return confirm('Approve This User?')">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
                             <input type="submit" class="btn btn-success btn-sm" value="Approve">
                         </form>
-                    @else(Auth::user()->roles == "USER" && $firewall->step == 2)
-                        <a class="btn btn-success btn-sm disabled">Done</a>        
-                    @endif
+                        @else(Auth::user()->roles == "USER" && $firewall->step == 2)
+                        <a class="btn btn-success btn-sm disabled">Done</a>
+                        @endif
                     </td>
                 </tr>
                 @endforeach

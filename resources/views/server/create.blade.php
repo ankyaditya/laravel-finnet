@@ -80,12 +80,12 @@
                         <div class="form-group">
                             <label>Aplikasi</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="aplikasi" name="aplikasi" required>
+                                <input type="text" class="form-control" id="aplikasi" name="aplikasi" placeholder="Enter Aplikasi"required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" id="description" class="form-control" required></textarea>
+                            <textarea name="description" id="description" class="form-control" placeholder="Enter Description" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="file">File</label>
@@ -103,4 +103,5 @@
             </div>
         </div>
     </div>
-    @endsection
+</div>
+@endsection

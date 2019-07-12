@@ -23,7 +23,8 @@
   <!-- Date Picker -->
   <link rel="stylesheet" href="{{asset('plugins/datepicker/datepicker3.css')}}">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker-bs3.css')}}">
+  <!-- <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker-bs3.css')}}"> ubah jadi dibawah-->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
@@ -57,7 +58,7 @@
           <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="index3.html" class="nav-link">Home</a>
+          <a href="{{route('home')}}" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="#" class="nav-link">Contact</a>
@@ -82,9 +83,7 @@
         <li class="nav-item">
           <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i class="fa fa-th-large"></i></a>
         </li>
-      </ul>
--->
-
+      </ul>-->
 
       <!-- Tasks: style can be found in dropdown.less -->
 
@@ -109,7 +108,7 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12 text-center" >
+                      <div class="col-md-12 text-center">
                         <span style="vertical-align:center;color:white">{{Auth::user()->name}}</span>
                       </div>
                     </div>
@@ -124,7 +123,7 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#">
+                      <a href="{{route('home.profile')}}">
                         <div class="tooltop"><i class="nav-icon fa  fa-user" style="float:center"></i>
                           <span class="tooltiptext">Profile</span>
                         </div>
@@ -166,7 +165,7 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           @if(\Auth::user())
           <div class="image">
-            <img src="{{asset('storage/'.Auth::user()->avatar)}}" class="img-circle elevation-2" alt="User Image" style="width:30px; height:30px";>
+            <img src="{{asset('storage/'.Auth::user()->avatar)}}" class="img-circle elevation-2" alt="User Image" style="width:30px; height:30px" ;>
           </div>
           <div class="info">
             <a href="#" class="d-block">{{Auth::user()->name}}</a>
@@ -260,6 +259,14 @@
                   </a>
                 </li>
               </ul>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="{{route('orderlink.index')}}" class="nav-link">
+                <i class="nav-icon fa fa-link"></i>
+                <p>
+                  Order Link
+                </p>
+              </a>
             </li>
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
@@ -419,7 +426,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
                 <!--                <li class="breadcrumb-item active">Dashboard v2</li>-->
               </ol>
             </div><!-- /.col -->
@@ -469,10 +476,12 @@
   <!-- ChartJS 1.0.2 -->
   <script src="{{asset('plugins/chartjs-old/Chart.min.js')}}"></script>
   <!-- daterangepicker -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-  <script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+  <script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script> -- ubah jadi dibawah> -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
   <!-- datepicker -->
-  <script src="{{asset('plugins/datepicker/datepicak.js')}}"></script>
+  <script src="{{asset('plugins/datepicker/daterangepicker.js')}}"></script>
   <script src="{{asset('plugins/datepicker/bootstrap-datepicker.js')}}"></script>
   <!-- Bootstrap WYSIHTML5 -->
   <script src="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>

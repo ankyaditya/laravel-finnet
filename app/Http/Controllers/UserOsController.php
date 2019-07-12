@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailableOS;
 use App\Mail\SendMailbackOS;
+use App\Exports\UserOsExport;
+use Excel;
 
 class UserOsController extends Controller
 {
@@ -21,9 +23,16 @@ class UserOsController extends Controller
         
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $useros = \App\UserOs::all();
+
+        $from = $request->get('from');
+        $to = $request->get('to');
+        if ($from && $to) {
+            $useros = \App\UserOs::whereBetween('request_date', [$from, $to])->get();
+        }
+        
         return view('useros.index', ['useros' => $useros]);
     }
 
@@ -138,5 +147,10 @@ class UserOsController extends Controller
         $useros->requestner_name = $useros->requestner_name;
         Mail::to('ankyaditya17@gmail.com')->send(new SendMailbackOS($useros));
         return redirect()->route('useros.index', ['id' => $id])->with('status','Request Approved');
+    }
+
+    public function export()
+    {
+        return Excel::download(new UserOsExport, 'User_Os_finnet.xlsx');
     }
 }

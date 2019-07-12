@@ -23,7 +23,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="project_name">Project Name</label>
-                            <select class="form-control select2" style="width: 100%;" id="project_name" name="project_name" required>
+                            <select class="form-control select2" style="width: 100%;" id="project_name" name="project_name" placeholder="Enter Project Name" required>
                                 <option value="">-</option>
                                 <option>Bill Payment Aggregator</option>
                                 <option>Electronic Payment Platform</option>
@@ -35,7 +35,7 @@
                         <div class="form-group">
                             <label>Username</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="username" name="username" required>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -58,7 +58,7 @@
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" id="description" class="form-control" required></textarea>
+                            <textarea name="description" id="description" class="form-control" placeholder="Enter Description" required></textarea>
                         </div>
 
                         <div class="card-footer">

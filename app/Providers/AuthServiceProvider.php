@@ -37,6 +37,10 @@ class AuthServiceProvider extends ServiceProvider
             return $users->divisi == "NETWORK" || $users->divisi == "USER";
         });
 
+        Gate::define('manage-orderlink', function ($users) {
+            return $users->divisi == "NETWORK" || $users->divisi == "USER";
+        });
+
         Gate::define('manage-requestos', function ($users) {
             return $users->divisi == "SERVER" || $users->divisi == "USER";
         });

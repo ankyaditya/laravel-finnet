@@ -2,12 +2,12 @@
 @section("title") List Request @endsection
 @section("subtitle") Server @endsection
 @section("content")
+@if(session('status'))
+<div class="alert alert-success">
+    {{session('status')}}
+</div>
+@endif
 <div class="card">
-    @if(session('status'))
-    <div class="alert alert-success">
-        {{session('status')}}
-    </div>
-    @endif
     <div class="card-header">
         <h3 class="card-title">Data Request</h3>
     </div>
@@ -22,6 +22,35 @@
             <i class="fa fa-edit"></i> Tambah
         </a>
         @endif
+
+        @if(Auth::user()->roles != "USER")
+        <a href="{{route('server.export')}}" class="btn btn-success my-3" target="_blank" style="float:right;margin-right:5px;">
+            <div class="tooltop">
+                <i class="nav-icon fa  fa-download"></i>
+                <span class="tooltiptextteng">Unduh</span>
+            </div>
+        </a>
+        @endif
+
+        <form action="{{route('server.index')}}">
+            <input type="text" name="from" id="from" style="display:none" value="{{Request::get('from')}}">
+            <input type="text" name="to" id="to" style="display:none" value="{{Request::get('to')}}">
+
+            <div class="form-group" style="margin-left:15px;">
+
+                <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;width: fit-content;">
+                    <i class="fa fa-calendar"></i>&nbsp;
+                    <span></span> <i class="fa fa-caret-down"></i>
+                </div>
+
+                <button class="btn btn-info my-3">
+                    <div class="tooltop">
+                        <i class="nav-icon fa fa-filter"></i>
+                        <span class="tooltiptextteng">Sort</span>
+                    </div>
+                </button>
+            </div>
+        </form>
 
         <table id="example1" class="table table-bordered table-striped">
             <thead>
@@ -130,40 +159,40 @@
                     </td>
                     <td>
                         @if(Auth::user()->roles == "USER")
-                            <?php $step = 4; ?>
+                        <?php $step = 4; ?>
                         @else
-                            <?php $step = 1; ?>
+                        <?php $step = 1; ?>
                         @endif
-                        
+
 
                         @if(Auth::user()->roles == "ADMIN" && $serv->status_approval == "Pending")
-                            <form action="{{route('server.approvemgr', ['id'=>$serv->id])}}" method="POST">
-                                @csrf
-                                <input type="hidden" value="PUT" name="_method">
-                                <input type="submit" class="btn btn-success btn-sm" value="Approve">
-                            </form>
-                            <form action="{{route('server.disapprovemgr', ['id'=>$serv->id])}}" method="POST">
-                                @csrf
-                                <input type="hidden" value="PUT" name="_method">
-                                <input type="submit" class="btn btn-danger btn-sm" value="Disapprove">
-                            </form>
+                        <form action="{{route('server.approvemgr', ['id'=>$serv->id])}}" method="POST">
+                            @csrf
+                            <input type="hidden" value="PUT" name="_method">
+                            <input type="submit" class="btn btn-success btn-sm" value="Approve">
+                        </form>
+                        <form action="{{route('server.disapprovemgr', ['id'=>$serv->id])}}" method="POST">
+                            @csrf
+                            <input type="hidden" value="PUT" name="_method">
+                            <input type="submit" class="btn btn-danger btn-sm" value="Disapprove">
+                        </form>
                         @elseif(Auth::user()->roles == "STAFF" && $serv->step == 1)
-                            <form class="d-inline" action="{{route('server.approvestaffw', ['id'=>$serv->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
-                                @csrf
-                                <input type="hidden" value="PUT" name="_method">
-                                <input type="submit" class="btn btn-success btn-sm" value="Approve">
-                            </form>
+                        <form class="d-inline" action="{{route('server.approvestaffw', ['id'=>$serv->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
+                            @csrf
+                            <input type="hidden" value="PUT" name="_method">
+                            <input type="submit" class="btn btn-success btn-sm" value="Approve">
+                        </form>
                         @elseif(Auth::user()->roles == "STAFF" && $serv->step == 2)
-                            <form class="d-inline" action="{{route('server.approvestaffc', ['id'=>$serv->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
-                                @csrf
-                                <input type="hidden" value="PUT" name="_method">
-                                <input type="submit" class="btn btn-success btn-sm" value="Approve">
-                            </form>
+                        <form class="d-inline" action="{{route('server.approvestaffc', ['id'=>$serv->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
+                            @csrf
+                            <input type="hidden" value="PUT" name="_method">
+                            <input type="submit" class="btn btn-success btn-sm" value="Approve">
+                        </form>
                         @elseif($serv->step == 3 && $step != 4 || Auth::user()->roles == "ADMIN" || Auth::user()->roles == "STAFF")
-                            <a class="btn btn-success btn-sm disabled">Done</a>        
+                        <a class="btn btn-success btn-sm disabled">Done</a>
                         @endif
                         @if(Auth::user()->roles == "USER" && Auth::user()->name == $serv->requester_name && $serv->step == 0)
-                            <a class="btn btn-info text-white btn-sm" href="{{route('server.edit', ['id'=>$serv->id])}}">Edit</a>
+                        <a class="btn btn-info text-white btn-sm" href="{{route('server.edit', ['id'=>$serv->id])}}">Edit</a>
                         @endif
                         <a class="btn btn-info text-white btn-sm" href="{{route('server.show', ['id'=>$serv->id])}}">Detail</a>
                     </td>
@@ -174,5 +203,33 @@
     </div>
     <!-- /.card-body -->
 </div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function() {
 
+        var start = moment().subtract(29, 'days');
+        var end = moment();
+
+        function cb(start, end) {
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            document.getElementById('from').value = start.format('YYYY-MM-DD');
+            document.getElementById('to').value = end.format('YYYY-MM-DD');
+        }
+
+        $('#reportrange').daterangepicker({
+            startDate: start,
+            endDate: end,
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        }, cb);
+
+        cb(start, end);
+    });
+</script>
 @endsection

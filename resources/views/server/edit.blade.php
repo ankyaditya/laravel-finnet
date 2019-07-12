@@ -22,7 +22,7 @@
                     @csrf
                     <input type="hidden" value="PUT" name="_method">
                     <div class="card-body">
-                    <div class="form-group">
+                        <div class="form-group">
                             <label for="os">Operating System</label>
                             <select class="form-control select2" style="width: 100%;" id="os" name="os" required>
                                 <option selected="selected">{{$server->os}}</option>
@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label for="ram">RAM</label>
                             <select class="form-control select2" style="width: 100%;" id="ram" name="ram" required>
-                            <option selected="selected">{{$server->ram}}</option>
+                                <option selected="selected">{{$server->ram}}</option>
                                 <option>2</option>
                                 <option>4</option>
                                 <option>8</option>
@@ -72,7 +72,7 @@
                         <div class="form-group">
                             <label for="environtment">Environtment</label>
                             <select class="form-control select2" style="width: 100%;" id="environtment" name="environtment" required>
-                            <option selected="selected">{{$server->environtment}}</option>
+                                <option selected="selected">{{$server->environtment}}</option>
                                 <option>Dev</option>
                                 <option>Prod</option>
                                 <option>Stagging</option>
@@ -114,4 +114,6 @@
             </div>
         </div>
     </div>
+</div>
+</div>
 @endsection

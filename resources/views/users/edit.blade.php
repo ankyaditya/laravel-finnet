@@ -51,7 +51,7 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label for="roles">Roles</label>
+                            <label for="roles">Divisi</label>
                             <br>
                             <input {{$user->divisi == "NETWORK" ? "checked" : ""}} type="radio" class="flat-red" name="divisi" class="form-control id="NETWORK" value="NETWORK" required>
                             <label for="NETWORK">Network</label>
