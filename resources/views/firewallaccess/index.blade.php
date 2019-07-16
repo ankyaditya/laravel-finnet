@@ -160,23 +160,35 @@
                         <form action="{{route('firewallaccess.approvemgr', ['id'=>$firewallaccess->id])}}" method="POST">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
+                            <input type="hidden" value="{{$firewallaccess->id}}" name="id_request">
+                            <input type="hidden" value="FW{{$firewallaccess->id}}" name="unique_request">
+                            <input type="hidden" value="Approval" name="role">
                             <input type="submit" class="btn btn-success btn-sm" value="Approve">
                         </form>
                         <form action="{{route('firewallaccess.disapprovemgr', ['id'=>$firewallaccess->id])}}" method="POST">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
+                            <input type="hidden" value="{{$firewallaccess->id}}" name="id_request">
+                            <input type="hidden" value="FW{{$firewallaccess->id}}" name="unique_request">
+                            <input type="hidden" value="Disapproval" name="role">
                             <input type="submit" class="btn btn-danger btn-sm" value="Disapprove">
                         </form>
                         @elseif(Auth::user()->roles == "STAFF" && $firewallaccess->step == 1)
                         <form class="d-inline" action="{{route('firewallaccess.approvestaffw', ['id'=>$firewallaccess->id])}}" method="POST">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
+                            <input type="hidden" value="{{$firewallaccess->id}}" name="id_request">
+                            <input type="hidden" value="FW{{$firewallaccess->id}}" name="unique_request">
+                            <input type="hidden" value="Working" name="role">
                             <input type="submit" class="btn btn-success btn-sm" value="Approve">
                         </form>
                         @elseif(Auth::user()->roles == "STAFF" && $firewallaccess->step == 2)
                         <form class="d-inline" action="{{route('firewallaccess.approvestaffc', ['id'=>$firewallaccess->id])}}" method="POST">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
+                            <input type="hidden" value="{{$firewallaccess->id}}" name="id_request">
+                            <input type="hidden" value="FW{{$firewallaccess->id}}" name="unique_request">
+                            <input type="hidden" value="Checking" name="role">
                             <input type="submit" class="btn btn-success btn-sm" value="Approve">
                         </form>
                         @elseif($firewallaccess->step == 3 && $step != 4 || Auth::user()->roles == "ADMIN" || Auth::user()->roles == "STAFF")

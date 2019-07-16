@@ -112,18 +112,32 @@
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    <div style="width: 30px;text-align:center">No</div>
+                                                    <div style="text-align:center">No</div>
                                                 </th>
                                                 <th>
-                                                    <div style="width: 145px;text-align:center">Nama Project</div>
+                                                    <div style="text-align:center">Request id</div>
+                                                </th>
+                                                <th>
+                                                    <div style="text-align:center">Role</div>
+                                                </th>
+                                                <th>
+                                                    <div style="text-align:center">Description</div>
+                                                </th>
+                                                <th>
+                                                    <div style="text-align:center">Date</div>
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($user as $usr)
                                             <tr>
-                                                <td>1</td>
-                                                <td>Huhu hahah</td>
+                                                <td>{{$loop->iteration}}</td>
+                                                <td>{{$usr->unique_request}}</td>
+                                                <td>{{$usr->role}}</td>
+                                                <td>{{$usr->description}}</td>
+                                                <td>{{$usr->date}}</td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

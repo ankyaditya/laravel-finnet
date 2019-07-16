@@ -108,7 +108,7 @@ class OrderLinkController extends Controller
         //
     }
 
-    public function approvemgr($id){
+    public function approvemgr(Request $request, $id){
         $current_date_time = Carbon::now();
         $orderlink = \App\OrderLink::findOrFail($id);
         $orderlink->status_approval = 'Approved';
@@ -116,11 +116,17 @@ class OrderLinkController extends Controller
         $orderlink->approved_date = $current_date_time;
         $orderlink->step = 1;
         $orderlink->save();
+        $data = array(
+            'id_request' => $request->get('id_request'),
+            'unique_request' => $request->get('unique_request'),
+            'role' => $request->get('role')
+        );
+        $this->timeline($data);
 
         return redirect()->route('orderlink.index', ['id' => $id])->with('status','Request Approved');
     }
 
-    public function disapprovemgr($id){
+    public function disapprovemgr(Request $request, $id){
         $current_date_time = Carbon::now();
         $orderlink = \App\OrderLink::findOrFail($id);
         $orderlink->status_approval = 'Disapprove';
@@ -128,11 +134,17 @@ class OrderLinkController extends Controller
         $orderlink->approved_date = $current_date_time;
         $orderlink->step = -1;
         $orderlink->save();
+        $data = array(
+            'id_request' => $request->get('id_request'),
+            'unique_request' => $request->get('unique_request'),
+            'role' => $request->get('role')
+        );
+        $this->timeline($data);
 
         return redirect()->route('orderlink.index', ['id' => $id])->with('status','Request Disaprove');
     }
 
-    public function approvestaffw($id){
+    public function approvestaffw(Request $request, $id){
         $current_date_time = Carbon::now();
         $orderlink = \App\OrderLink::findOrFail($id);
         $orderlink->status_worked = 'Approved';
@@ -140,11 +152,17 @@ class OrderLinkController extends Controller
         $orderlink->worked_date = $current_date_time;
         $orderlink->step = 2;
         $orderlink->save();
+        $data = array(
+            'id_request' => $request->get('id_request'),
+            'unique_request' => $request->get('unique_request'),
+            'role' => $request->get('role')
+        );
+        $this->timeline($data);
 
         return redirect()->route('orderlink.index', ['id' => $id])->with('status','Request Approved');
     }
 
-    public function approvestaffc($id){
+    public function approvestaffc(Request $request, $id){
         $current_date_time = Carbon::now();
         $orderlink = \App\OrderLink::findOrFail($id);
         $orderlink->status_checked = 'Approved';
@@ -152,10 +170,30 @@ class OrderLinkController extends Controller
         $orderlink->checked_date = $current_date_time;
         $orderlink->step = 3;
         $orderlink->save();
+        $data = array(
+            'id_request' => $request->get('id_request'),
+            'unique_request' => $request->get('unique_request'),
+            'role' => $request->get('role')
+        );
+        $this->timeline($data);
         $orderlink->id = $orderlink->id;
         $orderlink->requestner_name = $orderlink->requestner_name;
         Mail::to('ankyaditya17@gmail.com')->send(new SendMailbackOL($orderlink));
         return redirect()->route('orderlink.index', ['id' => $id])->with('status','Request Approved');
+    }
+
+    public function timeline($data)
+    {
+        $timeline = new \App\Timeline();
+        $current_date_time = Carbon::now();
+        $timeline->id_request = $data['id_request'];
+        $timeline->id_user = \Auth::user()->id;
+        $timeline->unique_request = $data['unique_request'];
+        $timeline->name = \Auth::user()->name;
+        $timeline->role = $data['role'];
+        $timeline->description = 'Order Link';
+        $timeline->date = $current_date_time;
+        $timeline->save();
     }
 
     public function export()

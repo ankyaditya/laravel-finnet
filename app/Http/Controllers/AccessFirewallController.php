@@ -94,9 +94,11 @@ class AccessFirewallController extends Controller
     }
 
     public function destroy($id)
-    { }
+    { 
+        //
+    }
 
-    public function approvemgr($id)
+    public function approvemgr(Request $request, $id)
     {
         $current_date_time = Carbon::now();
         $firewallaccesss = \App\AccessFirewall::findOrFail($id);
@@ -105,11 +107,17 @@ class AccessFirewallController extends Controller
         $firewallaccesss->approved_date = $current_date_time;
         $firewallaccesss->step = 1;
         $firewallaccesss->save();
+        $data = array(
+            'id_request' => $request->get('id_request'),
+            'unique_request' => $request->get('unique_request'),
+            'role' => $request->get('role')
+        );
+        $this->timeline($data);
 
         return redirect()->route('firewallaccess.index', ['id' => $id])->with('status', 'Request Approved');
     }
 
-    public function disapprovemgr($id)
+    public function disapprovemgr(Request $request, $id)
     {
         $current_date_time = Carbon::now();
         $firewallaccesss = \App\AccessFirewall::findOrFail($id);
@@ -118,11 +126,17 @@ class AccessFirewallController extends Controller
         $firewallaccesss->approved_date = $current_date_time;
         $firewallaccesss->step = -1;
         $firewallaccesss->save();
+        $data = array(
+            'id_request' => $request->get('id_request'),
+            'unique_request' => $request->get('unique_request'),
+            'role' => $request->get('role')
+        );
+        $this->timeline($data);
 
         return redirect()->route('firewallaccess.index', ['id' => $id])->with('status', 'Request Disaprove');
     }
 
-    public function approvestaffw($id)
+    public function approvestaffw(Request $request, $id)
     {
         $current_date_time = Carbon::now();
         $firewallaccesss = \App\AccessFirewall::findOrFail($id);
@@ -131,11 +145,17 @@ class AccessFirewallController extends Controller
         $firewallaccesss->worked_date = $current_date_time;
         $firewallaccesss->step = 2;
         $firewallaccesss->save();
+        $data = array(
+            'id_request' => $request->get('id_request'),
+            'unique_request' => $request->get('unique_request'),
+            'role' => $request->get('role')
+        );
+        $this->timeline($data);
 
         return redirect()->route('firewallaccess.index', ['id' => $id])->with('status', 'Request Approved');
     }
 
-    public function approvestaffc($id)
+    public function approvestaffc(Request $request, $id)
     {
         $current_date_time = Carbon::now();
         $firewallaccesss = \App\AccessFirewall::findOrFail($id);
@@ -144,10 +164,30 @@ class AccessFirewallController extends Controller
         $firewallaccesss->checked_date = $current_date_time;
         $firewallaccesss->step = 3;
         $firewallaccesss->save();
+        $data = array(
+            'id_request' => $request->get('id_request'),
+            'unique_request' => $request->get('unique_request'),
+            'role' => $request->get('role')
+        );
+        $this->timeline($data);
         $firewallaccesss->id = $firewallaccesss->id;
         $firewallaccesss->requestner_name = $firewallaccesss->requestner_name;
         Mail::to('ankyaditya17@gmail.com')->send(new SendMailbackFW($firewallaccesss));
         return redirect()->route('firewallaccess.index', ['id' => $id])->with('status', 'Request Approved');
+    }
+
+    public function timeline($data)
+    {
+        $timeline = new \App\Timeline();
+        $current_date_time = Carbon::now();
+        $timeline->id_request = $data['id_request'];
+        $timeline->id_user = \Auth::user()->id;
+        $timeline->unique_request = $data['unique_request'];
+        $timeline->name = \Auth::user()->name;
+        $timeline->role = $data['role'];
+        $timeline->description = 'Request Firewall';
+        $timeline->date = $current_date_time;
+        $timeline->save();
     }
 
     public function export()

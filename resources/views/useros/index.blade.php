@@ -158,26 +158,38 @@
 
 
                         @if(Auth::user()->roles == "ADMIN" && $uos->status_approval == "Pending")
-                        <form action="{{route('useros.approvemgr', ['id'=>$uos->id])}}" method="POST">
+                        <form action="{{route('useros.approvemgr', ['id'=>$uos->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
+                            <input type="hidden" value="{{$uos->id}}" name="id_request">
+                            <input type="hidden" value="OS{{$uos->id}}" name="unique_request">
+                            <input type="hidden" value="Approval" name="role">
                             <input type="submit" class="btn btn-success btn-sm" value="Approve">
                         </form>
-                        <form action="{{route('useros.disapprovemgr', ['id'=>$uos->id])}}" method="POST">
+                        <form action="{{route('useros.disapprovemgr', ['id'=>$uos->id])}}" method="POST" method="POST" onsubmit="return confirm('Disaproval This Request?')">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
+                            <input type="hidden" value="{{$uos->id}}" name="id_request">
+                            <input type="hidden" value="OS{{$uos->id}}" name="unique_request">
+                            <input type="hidden" value="Disapproval" name="role">
                             <input type="submit" class="btn btn-danger btn-sm" value="Disapprove">
                         </form>
                         @elseif(Auth::user()->roles == "STAFF" && $uos->step == 1)
                         <form class="d-inline" action="{{route('useros.approvestaffw', ['id'=>$uos->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
+                            <input type="hidden" value="{{$uos->id}}" name="id_request">
+                            <input type="hidden" value="OS{{$uos->id}}" name="unique_request">
+                            <input type="hidden" value="Working" name="role">
                             <input type="submit" class="btn btn-success btn-sm" value="Approve">
                         </form>
                         @elseif(Auth::user()->roles == "STAFF" && $uos->step == 2)
                         <form class="d-inline" action="{{route('useros.approvestaffc', ['id'=>$uos->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
+                            <input type="hidden" value="{{$uos->id}}" name="id_request">
+                            <input type="hidden" value="OS{{$uos->id}}" name="unique_request">
+                            <input type="hidden" value="Checking" name="role">
                             <input type="submit" class="btn btn-success btn-sm" value="Approve">
                         </form>
                         @elseif($uos->step == 3 && $step != 4 || Auth::user()->roles == "ADMIN" || Auth::user()->roles == "STAFF")

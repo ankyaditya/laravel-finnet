@@ -188,29 +188,6 @@
               </a>
             </li>
             <li class="nav-item has-treeview">
-              <a href="#" class="nav-link {{Request::is('users/create')?'active':''|| Request::is('users')?'active':''}}">
-                <i class="nav-icon fa fa-users"></i>
-                <p>
-                  Manage Users
-                  <i class="right fa fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{route('users.create')}}" class="nav-link {{Request::is('users/create')?'active':''}} ">
-                    <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Tambah</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('users.index')}}" class="nav-link {{Request::is('users')?'active':''}}">
-                    <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Daftar</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item has-treeview">
               <a href="#" class="nav-link {{Request::is('useros')?'active':''||Request::is('server')?'active':''}}">
                 <i class="nav-icon fa fa-laptop"></i>
                 <p>
@@ -261,64 +238,36 @@
               </ul>
             </li>
             <li class="nav-item has-treeview">
-              <a href="{{route('orderlink.index')}}" class="nav-link">
-                <i class="nav-icon fa fa-link"></i>
-                <p>
-                  Order Link
-                </p>
-              </a>
-            </li>
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fa fa-user"></i>
+              <a href="#" class="nav-link {{Request::is('users/create')?'active':''|| Request::is('users')?'active':''}}">
+                <i class="nav-icon fa fa-users"></i>
                 <p>
                   Data Request User
-                  <i class="fa fa-angle-left right"></i>
+                  <i class="right fa fa-angle-left"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{route('users.create')}}" class="nav-link {{Request::is('users/create')?'active':''}} ">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Simple Tables</p>
+                    <p>Tambah</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{route('users.index')}}" class="nav-link {{Request::is('users')?'active':''}}">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Data Tables</p>
+                    <p>Daftar</p>
                   </a>
                 </li>
               </ul>
             </li>
             <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+              <a href="{{route('orderlink.index')}}" class="nav-link">
                 <i class="nav-icon fa fa-link"></i>
                 <p>
                   Data Order Link
                   <i class="fa fa-angle-left right"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Inbox</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Compose</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Read</p>
-                  </a>
-                </li>
-              </ul>
             </li>
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
@@ -332,31 +281,31 @@
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Invoice</p>
+                    <p>coming soon</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Profile</p>
+                    <p>coming soon</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Login</p>
+                    <p>coming soon</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Register</p>
+                    <p>coming soon</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Lockscreen</p>
+                    <p>coming soon</p>
                   </a>
                 </li>
               </ul>
@@ -373,25 +322,25 @@
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Error 404</p>
+                    <p>coming soon</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Error 500</p>
+                    <p>coming soon</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Blank Page</p>
+                    <p>coming soon</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>Starter Page</p>
+                    <p>coming soon</p>
                   </a>
                 </li>
               </ul>

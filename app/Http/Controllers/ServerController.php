@@ -107,7 +107,7 @@ class ServerController extends Controller
 
     }
 
-    public function approvemgr($id){
+    public function approvemgr(Request $request, $id){
         $current_date_time = Carbon::now();
         $server = \App\Server::findOrFail($id);
         $server->status_approval = 'Approved';
@@ -115,11 +115,17 @@ class ServerController extends Controller
         $server->approved_date = $current_date_time;
         $server->step = 1;
         $server->save();
+        $data = array(
+            'id_request' => $request->get('id_request'),
+            'unique_request' => $request->get('unique_request'),
+            'role' => $request->get('role')
+        );
+        $this->timeline($data);
 
         return redirect()->route('server.index', ['id' => $id])->with('status','Request Approved');
     }
 
-    public function disapprovemgr($id){
+    public function disapprovemgr(Request $request, $id){
         $current_date_time = Carbon::now();
         $server = \App\Server::findOrFail($id);
         $server->status_approval = 'Disapprove';
@@ -127,11 +133,17 @@ class ServerController extends Controller
         $server->approved_date = $current_date_time;
         $server->step = -1;
         $server->save();
+        $data = array(
+            'id_request' => $request->get('id_request'),
+            'unique_request' => $request->get('unique_request'),
+            'role' => $request->get('role')
+        );
+        $this->timeline($data);
 
         return redirect()->route('server.index', ['id' => $id])->with('status','Request Disaprove');
     }
 
-    public function approvestaffw($id){
+    public function approvestaffw(Request $request, $id){
         $current_date_time = Carbon::now();
         $server = \App\Server::findOrFail($id);
         $server->status_worked = 'Approved';
@@ -139,11 +151,17 @@ class ServerController extends Controller
         $server->worked_date = $current_date_time;
         $server->step = 2;
         $server->save();
+        $data = array(
+            'id_request' => $request->get('id_request'),
+            'unique_request' => $request->get('unique_request'),
+            'role' => $request->get('role')
+        );
+        $this->timeline($data);
 
         return redirect()->route('server.index', ['id' => $id])->with('status','Request Approved');
     }
 
-    public function approvestaffc($id){
+    public function approvestaffc(Request $request, $id){
         $current_date_time = Carbon::now();
         $server = \App\Server::findOrFail($id);
         $server->status_checked = 'Approved';
@@ -151,10 +169,30 @@ class ServerController extends Controller
         $server->checked_date = $current_date_time;
         $server->step = 3;
         $server->save();
+        $data = array(
+            'id_request' => $request->get('id_request'),
+            'unique_request' => $request->get('unique_request'),
+            'role' => $request->get('role')
+        );
+        $this->timeline($data);
         $server->id = $server->id;
         $server->requestner_name = $server->requestner_name;
         Mail::to('ankyaditya17@gmail.com')->send(new SendMailbackRS($server));
         return redirect()->route('server.index', ['id' => $id])->with('status','Request Approved');
+    }
+
+    public function timeline($data)
+    {
+        $timeline = new \App\Timeline();
+        $current_date_time = Carbon::now();
+        $timeline->id_request = $data['id_request'];
+        $timeline->id_user = \Auth::user()->id;
+        $timeline->unique_request = $data['unique_request'];
+        $timeline->name = \Auth::user()->name;
+        $timeline->role = $data['role'];
+        $timeline->description = 'Request Server';
+        $timeline->date = $current_date_time;
+        $timeline->save();
     }
 
     public function export()

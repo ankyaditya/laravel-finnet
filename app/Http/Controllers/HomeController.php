@@ -71,7 +71,11 @@ class HomeController extends Controller
 
     public function profile()
     {
-        return view("profile.profile");
+        $user = \App\Timeline::where('id_user',\Auth::user()->id)->get();
+        $show = array(
+            'user' => $user
+        );
+        return view("profile.profile",$show);
     }
 
     public function edit()
@@ -99,4 +103,5 @@ class HomeController extends Controller
         $user->save();
         return redirect()->route('home.profile')->with('status', 'User succesfully updated');
     }
+
 }

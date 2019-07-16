@@ -177,23 +177,35 @@
                         <form action="{{route('orderlink.approvemgr', ['id'=>$olink->id])}}" method="POST">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
+                            <input type="hidden" value="{{$olink->id}}" name="id_request">
+                            <input type="hidden" value="OL{{$olink->id}}" name="unique_request">
+                            <input type="hidden" value="Approval" name="role">
                             <input type="submit" class="btn btn-success btn-sm" value="Approve">
                         </form>
                         <form action="{{route('orderlink.disapprovemgr', ['id'=>$olink->id])}}" method="POST">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
+                            <input type="hidden" value="{{$olink->id}}" name="id_request">
+                            <input type="hidden" value="OL{{$olink->id}}" name="unique_request">
+                            <input type="hidden" value="Disapproval" name="role">
                             <input type="submit" class="btn btn-danger btn-sm" value="Disapprove">
                         </form>
                         @elseif(Auth::user()->roles == "STAFF" && $olink->step == 1)
                         <form class="d-inline" action="{{route('orderlink.approvestaffw', ['id'=>$olink->id])}}" method="POST">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
+                            <input type="hidden" value="{{$olink->id}}" name="id_request">
+                            <input type="hidden" value="OL{{$olink->id}}" name="unique_request">
+                            <input type="hidden" value="Working" name="role">
                             <input type="submit" class="btn btn-success btn-sm" value="Approve">
                         </form>
                         @elseif(Auth::user()->roles == "STAFF" && $olink->step == 2)
                         <form class="d-inline" action="{{route('orderlink.approvestaffc', ['id'=>$olink->id])}}" method="POST">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
+                            <input type="hidden" value="{{$olink->id}}" name="id_request">
+                            <input type="hidden" value="OL{{$olink->id}}" name="unique_request">
+                            <input type="hidden" value="Checking" name="role">
                             <input type="submit" class="btn btn-success btn-sm" value="Approve">
                         </form>
                         @elseif($olink->step == 3 && $step != 4 || Auth::user()->roles == "ADMIN" || Auth::user()->roles == "STAFF")

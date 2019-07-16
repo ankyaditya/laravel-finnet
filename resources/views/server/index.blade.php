@@ -169,23 +169,35 @@
                         <form action="{{route('server.approvemgr', ['id'=>$serv->id])}}" method="POST">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
+                            <input type="hidden" value="{{$serv->id}}" name="id_request">
+                            <input type="hidden" value="RS{{$serv->id}}" name="unique_request">
+                            <input type="hidden" value="Approval" name="role">
                             <input type="submit" class="btn btn-success btn-sm" value="Approve">
                         </form>
                         <form action="{{route('server.disapprovemgr', ['id'=>$serv->id])}}" method="POST">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
+                            <input type="hidden" value="{{$serv->id}}" name="id_request">
+                            <input type="hidden" value="RS{{$serv->id}}" name="unique_request">
+                            <input type="hidden" value="Disapproval" name="role">
                             <input type="submit" class="btn btn-danger btn-sm" value="Disapprove">
                         </form>
                         @elseif(Auth::user()->roles == "STAFF" && $serv->step == 1)
                         <form class="d-inline" action="{{route('server.approvestaffw', ['id'=>$serv->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
+                            <input type="hidden" value="{{$serv->id}}" name="id_request">
+                            <input type="hidden" value="RS{{$serv->id}}" name="unique_request">
+                            <input type="hidden" value="Working" name="role">
                             <input type="submit" class="btn btn-success btn-sm" value="Approve">
                         </form>
                         @elseif(Auth::user()->roles == "STAFF" && $serv->step == 2)
                         <form class="d-inline" action="{{route('server.approvestaffc', ['id'=>$serv->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
                             @csrf
                             <input type="hidden" value="PUT" name="_method">
+                            <input type="hidden" value="{{$serv->id}}" name="id_request">
+                            <input type="hidden" value="RS{{$serv->id}}" name="unique_request">
+                            <input type="hidden" value="Checking" name="role">
                             <input type="submit" class="btn btn-success btn-sm" value="Approve">
                         </form>
                         @elseif($serv->step == 3 && $step != 4 || Auth::user()->roles == "ADMIN" || Auth::user()->roles == "STAFF")
