@@ -11558,9 +11558,13 @@ label:not(.form-check-label):not(.custom-file-label) {
   height: 60px;
   text-align: center;
   color: #666;
-  border: 1px solid #ddd;
-  background-color: #f4f4f4;
+  border: 1px solid rgb(121, 122, 124);
   font-size: 12px;
+  background-color: #dfe6e9;
+}
+.btn-app:not(:disabled):not(.disabled) {
+  cursor: pointer;
+  background: #dfe6e9;
 }
 
 .btn-app > .fa,
@@ -11571,9 +11575,9 @@ label:not(.form-check-label):not(.custom-file-label) {
 }
 
 .btn-app:hover {
-  background: #f4f4f4;
-  color: #444;
-  border-color: #aaa;
+  background: #525050;
+  border-color: #636e72;
+  text-decoration: none;
 }
 
 .btn-app:active, .btn-app:focus {

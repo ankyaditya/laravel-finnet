@@ -1,6 +1,6 @@
 @extends('layouts.global')
 @section("title") Detail @endsection
-@section("subtitle") Request User OS @endsection
+@section("subtitle") Request Server @endsection
 @section("content")
 <div class="container-fluid">
     @if(session('status'))
@@ -10,23 +10,23 @@
     @endif
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Data Request User OS</h3>
+            <h3 class="card-title">Data Request Server</h3>
         </div>
         <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="example1" class="table table-bordered table-striped table-responsive ">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Id Request</th>
-                        <th>Requester Name</th>
-                        <th>OS</th>
-                        <th>RAM</th>
-                        <th>CPU</th>
-                        <th>Disk</th>
-                        <th>Environtment</th>
-                        <th>Aplikasi </th>
-                        <th>Description</th>
-                        <th>File</th>
+                    <th><div style="width: 40px;text-align:center">No</div></th>
+                    <th><div style="width: 100px;text-align:center">Id Request</div></th>
+                    <th><div style="width: 200px;text-align:center ">Requester Name</div></th>
+                    <th><div style="width: 200px;text-align:center ">OS</div></th>
+                    <th><div style="width: 200px;text-align:center ">RAM</div></th>
+                    <th><div style="width: 200px;text-align:center ">CPU</div></th>
+                    <th><div style="width: 150px;text-align:center ">Disk</div></th>
+                    <th><div style="width: 150px;text-align:center ">Environtment</div></th>
+                    <th><div style="width: 300px;text-align:center ">Aplikasi</div></th>
+                    <th><div style="width: 200px;text-align:center ">Description</div></th>
+                    <th><div style="width: 250px;text-align:center ">File</div></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -75,12 +75,12 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Id Request</th>
-                        <th>Role Name</th>
-                        <th>Role</th>
-                        <th>Status</th>
-                        <th>Date</th>
+                        <th><div style="text-align:center">No</div></th>
+                        <th><div style="text-align:center">Id Request</div></th>
+                        <th><div style="text-align:center">Role Name</div></th>
+                        <th><div style="text-align:center">Role</div></th>
+                        <th><div style="text-align:center">Status</div></th>
+                        <th><div style="text-align:center">Date</div></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -198,10 +198,10 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Id Request</th>
-                        <th>Date Request</th>
-                        <th>Status Request</th>
+                        <th><div style="text-align:center">No</div></th>
+                        <th><div style="text-align:center">Id Request</div></th>
+                        <th><div style="text-align:center">Date Request</div></th>
+                        <th><div style="text-align:center">Status Request</div></th>
                     </tr>
                 </thead>
                 <tbody>

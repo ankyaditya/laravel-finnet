@@ -26,7 +26,7 @@
               <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required>
             </div>
             <div class="form-group">
-              <label for="username">Userame</label>
+              <label for="username">Username</label>
               <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
             </div>
             <div class="form-group">

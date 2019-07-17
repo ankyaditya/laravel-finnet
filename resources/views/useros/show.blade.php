@@ -16,13 +16,13 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Id Request</th>
-                        <th>Requester Name</th>
-                        <th>Ip Server</th>
-                        <th>Role</th>
-                        <th>Project Name</th>
-                        <th>Description</th>
+                    <th><div style="width: 40px;text-align:center">No</div></th>
+                    <th><div style="width: 100px;text-align:center">Id Request</div></th>
+                    <th><div style="width: 200px;text-align:center ">Requester Name</div></th>
+                    <th><div style="width: 200px;text-align:center ">IP Server</div></th>
+                    <th><div style="width: 200px;text-align:center ">Role</div></th>
+                    <th><div style="width: 200px;text-align:center ">Project Name</div></th>
+                    <th><div style="width: 250px;text-align:center ">Description</div></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,12 +55,12 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Id Request</th>
-                        <th>Role Name</th>
-                        <th>Role</th>
-                        <th>Status</th>
-                        <th>Date</th>
+                        <th><div style="text-align:center">No</div></th>
+                        <th><div style="text-align:center">ID Request</div></th>
+                        <th><div style="text-align:center">Role Name</div></th>
+                        <th><div style="text-align:center">Role</div></th>
+                        <th><div style="text-align:center">Status</div></th>
+                        <th><div style="text-align:center">Date</div></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -178,10 +178,10 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Id Request</th>
-                        <th>Date Request</th>
-                        <th>Status Request</th>
+                        <th><div style="text-align:center">No</div></th>
+                        <th><div style="text-align:center">Id Request</div></th>
+                        <th><div style="text-align:center">Date Request</div></th>
+                        <th><div style="text-align:center">Status Request</div></th>
                     </tr>
                 </thead>
                 <tbody>

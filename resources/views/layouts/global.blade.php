@@ -123,18 +123,22 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="{{route('home.profile')}}">
-                        <div class="tooltop"><i class="nav-icon fa  fa-user" style="float:center"></i>
+                      <a href="{{route('home.profile')}}" class="btn btn-ius" style="background-color:transparent">
+                        <div class="tooltop"><i class="nav-icon fa  fa-user" style="color:#17A2B8"></i>
                           <span class="tooltiptext">Profile</span>
                         </div>
                       </a>
                     </div>
-                    <div class="pull-right">
-                      <a href="#">
-                        <div class="tooltop"><i class="nav-icon fa  fa-sign-out" style="float:center"></i>
-                          <span class="tooltiptext">Sign Out</span>
+                    <div class=" pull-right">
+                      <form action="{{route("logout")}}" method="POST">
+                        @csrf
+                        <div class="tooltop">
+                          <button type="submit" class="btn btn-ius" style="background-color:transparent">
+                            <i class="nav-icon fa  fa-sign-out" style="color:#17A2B8"></i>
+                          </button>
+                          <span class="tooltiptextteng">Logout</span>
                         </div>
-                      </a>
+                      </form>
                     </div>
                   </li>
                 </ul>
@@ -183,12 +187,11 @@
                 <i class="nav-icon fa fa-home"></i>
                 <p>
                   Home
-                  <i class="right fa fa-angle-left"></i>
                 </p>
               </a>
             </li>
             <li class="nav-item has-treeview">
-              <a href="#" class="nav-link {{Request::is('useros')?'active':''||Request::is('server')?'active':''}}">
+              <a href="#" class="nav-link {{Request::is('useros')?'active':''||Request::is('server')?'active':''||Request::is('server/*')?'active':''}}">
                 <i class="nav-icon fa fa-laptop"></i>
                 <p>
                   Monitoring Server
@@ -197,7 +200,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('useros.index')}}" class="nav-link {{Request::is('useros')?'active':''}}">
+                  <a href="{{route('useros.index')}}" class="nav-link {{Request::is('useros')?'active':''||Request::is('useros/*')?'active':''}}">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>Request User OS</p>
                   </a>
@@ -205,7 +208,7 @@
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('server.index')}}" class="nav-link {{Request::is('server')?'active':''}}">
+                  <a href="{{route('server.index')}}" class="nav-link {{Request::is('server')?'active':''||Request::is('server/*')?'active':''}}">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>Request Server</p>
                   </a>
@@ -213,7 +216,7 @@
               </ul>
             </li>
             <li class="nav-item has-treeview">
-              <a href="#" class="nav-link {{Request::is('firewalls')?'active':''|| Request::is('firewallaccess')?'active':''}}">
+              <a href="#" class="nav-link {{Request::is('firewalls')?'active':''|| Request::is('firewallaccess')?'active':'' || Request::is('firewallaccess/*')?'active':''}}">
                 <i class="nav-icon fa fa-edit"></i>
                 <p>
                   Data Request Firewall
@@ -222,7 +225,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('firewalls.index')}}" class="nav-link {{Request::is('firewalls')?'active':''}}">
+                  <a href="{{route('firewalls.index')}}" class="nav-link {{Request::is('firewalls')?'active':''|| Request::is('firewalls/*')?'active':''}}">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>Request User Firewall</p>
                   </a>
@@ -230,7 +233,7 @@
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('firewallaccess.index')}}" class="nav-link {{Request::is('firewallaccess')?'active':''}}">
+                  <a href="{{route('firewallaccess.index')}}" class="nav-link {{Request::is('firewallaccess')?'active':''|| Request::is('firewallaccess/*')?'active':''}}">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>Request Access Firewall</p>
                   </a>
@@ -261,7 +264,7 @@
               </ul>
             </li>
             <li class="nav-item has-treeview">
-              <a href="{{route('orderlink.index')}}" class="nav-link">
+              <a href="{{route('orderlink.index')}}" class="nav-link {{Request::is('orderlink')?'active':''|| Request::is('orderlink/*')?'active':''}}">
                 <i class="nav-icon fa fa-link"></i>
                 <p>
                   Data Order Link
@@ -347,12 +350,6 @@
             </li>
             <li class="nav-header">SETTINGS</li>
             <li class="nav-item">
-            <li>
-              <form action="{{route("logout")}}" method="POST">
-                @csrf
-                <button class="dropdown-item" style="cursor:pointer">Sign Out</button>
-              </form>
-            </li>
             </li>
           </ul>
         </nav>

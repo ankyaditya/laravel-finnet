@@ -13,23 +13,23 @@
             <h3 class="card-title">Data Order Link</h3>
         </div>
         <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="example1" class="table table-bordered table-striped table-responsive">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Id Request</th>
-                        <th>Requester Name</th>
-                        <th>Nama Perusahaan</th>
-                        <th>Alamat Data Center</th>
-                        <th>No. Telepon Referensi</th>
-                        <th>Nama PIC</th>
-                        <th>No.Telp & Email PIC</th>
-                        <th>Provider Link</th>
-                        <th>Jenis Link</th>
-                        <th>Backhaul</th>
-                        <th>Bandwidth Link</th>
-                        <th>Beban Instalasi Kabel Gedung (IKG)</th>
-                        <th>Delivery Target Date</th>
+                    <th><div style="width: 100px;text-align:center">No</div></th>
+                    <th><div style="width: 145px;text-align:center">Id Request</div></th>
+                    <th><div style="width: 195px;text-align:center">Requester Name</div></th>
+                    <th><div style="width: 200px;text-align:center">Nama Perusahaan</div></th>
+                    <th><div style="width: 200px;text-align:center">Alamat Data Center</div></th>
+                    <th><div style="width: 220px;text-align:center">No. Telepon Referensi</div></th>
+                    <th><div style="width: 220px;text-align:center">Nama PIC</div></th>
+                    <th><div style="width: 220px;text-align:center">No Telp & Email PIC</div></th>
+                    <th><div style="width: 220px;text-align:center">Provider Link</div></th>
+                    <th><div style="width: 220px;text-align:center">Jenis Link</div></th>
+                    <th><div style="width: 220px;text-align:center">Backhaul</div></th>
+                    <th><div style="width: 220px;text-align:center">Bandwidth Link</div></th>
+                    <th><div style="width: 320px;text-align:center">Beban Instalasi Kabel Gedung (IKG)</div></th>
+                    <th><div style="width: 220px;text-align:center">Delivery Target Date</div></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -83,12 +83,12 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Id Request</th>
-                        <th>Role Name</th>
-                        <th>Role</th>
-                        <th>Status</th>
-                        <th>Date</th>
+                        <th><div style="text-align:center">No</div></th>
+                        <th><div style="text-align:center">Id Request</div></th>
+                        <th><div style="text-align:center">Role Name</div></th>
+                        <th><div style="text-align:center">Role</div></th>
+                        <th><div style="text-align:center">Status</div></th>
+                        <th><div style="text-align:center">Date</div></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -206,18 +206,16 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Id Request</th>
-                        <th>Period</th>
-                        <th>Date Request</th>
-                        <th>Status Request</th>
+                        <th><div style="text-align:center">No</div></th>
+                        <th><div style="text-align:center">Id Request</div></th>
+                        <th><div style="text-align:center">Date Request</div></th>
+                        <th><div style="text-align:center">Status Request</div></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
                         <td>OL{{$orderlink->id}}</td>
-                        <td>{{$orderlink->access_period}}</td>
                         <td>{{$orderlink->created_at}}</td>
                         <td>@if($orderlink->step == 3)
                             <span class="badge badge-success">

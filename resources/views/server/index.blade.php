@@ -37,41 +37,75 @@
             <input type="text" name="to" id="to" style="display:none" value="{{Request::get('to')}}">
 
             <div class="form-group" style="margin-left:15px;">
-
-                <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;width: fit-content;">
-                    <i class="fa fa-calendar"></i>&nbsp;
-                    <span></span> <i class="fa fa-caret-down"></i>
-                </div>
-
-                <button class="btn btn-info my-3">
+                <button class="btn btn-info my-3" style="display:inline">
                     <div class="tooltop">
                         <i class="nav-icon fa fa-filter"></i>
                         <span class="tooltiptextteng">Sort</span>
                     </div>
                 </button>
+                <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;width: fit-content;;display:inline">
+                    <i class="fa fa-calendar"></i>&nbsp;
+                    <span></span> <i class="fa fa-caret-down"></i>
+                </div>
+
+
             </div>
         </form>
 
-        <table id="example1" class="table table-bordered table-striped">
+        <table id="example1" class="table table-bordered table-striped table-responsive">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Id Request</th>
-                    <th>Requester Name</th>
-                    <th>OS</th>
-                    <th>RAM</th>
-                    <th>CPU</th>
-                    <th>Disk</th>
-                    <th>Environtment</th>
-                    <th>Aplikasi</th>
-                    <th>Description</th>
-                    <th>Request Date</th>
-                    <th>Worked Date</th>
-                    <th>Checked by</th>
-                    <th>Status Cheked</th>
-                    <th>Approved by</th>
-                    <th>Status Approval</th>
-                    <th>Action</th>
+                    <th style="heigth: 850px;vertical-align: middle ; horizontal-align: middle">
+                        <div style="width: 40px;text-align:center">No</div>
+                    </th>
+                    <th style="width: 350px;vertical-align: middle ; horizontal-align: middle">
+                        <div style="width: 100px;text-align:center">Id Request</div>
+                    </th>
+                    <th style="width: 350px;vertical-align: middle ; horizontal-align: middle">
+                        <div style="width: 200px;text-align:center ">Requester Name</div>
+                    </th>
+                    <th style="width: 350px;vertical-align: middle; horizontal-align: middle ">
+                        <div style="width: 200px;text-align:center ">OS</div>
+                    </th>
+                    <th style="width: 350px;vertical-align: middle ; horizontal-align: middle">
+                        <div style="width: 200px;text-align:center ">RAM</div>
+                    </th>
+                    <th style="width: 350px;vertical-align: middle; horizontal-align: middle ">
+                        <div style="width: 200px;text-align:center ">CPU</div>
+                    </th>
+                    <th style="width: 350px;vertical-align: middle ; horizontal-align: middle">
+                        <div style="width: 150px;text-align:center ">Disk</div>
+                    </th>
+                    <th style="width: 350px;vertical-align: middle ; horizontal-align: middle">
+                        <div style="width: 150px;text-align:center ">Environtment</div>
+                    </th>
+                    <th style="width: 350px;vertical-align: middle ; horizontal-align: middle">
+                        <div style="width: 300px;text-align:center ">Aplikasi</div>
+                    </th>
+                    <th style="width: 350px;vertical-align: middle ; horizontal-align: middle">
+                        <div style="width: 200px;text-align:center ">Description</div>
+                    </th>
+                    <th style="width: 350px;vertical-align: middle ; horizontal-align: middle">
+                        <div style="width: 250px;text-align:center ">Request Date</div>
+                    </th>
+                    <th style="width: 350px;vertical-align: middle ; horizontal-align: middle">
+                        <div style="width: 200px;text-align:center ">Worked Date</div>
+                    </th>
+                    <th style="width: 350px;vertical-align: middle ; horizontal-align: middle">
+                        <div style="width: 200px;text-align:center ">Checked By</div>
+                    </th>
+                    <th style="width: 350px;vertical-align: middle ; horizontal-align: middle">
+                        <div style="width: 200px;text-align:center ">Status Checked</div>
+                    </th>
+                    <th style="width: 550px;vertical-align: middle ; horizontal-align: middle">
+                        <div style="width: 200px;text-align:center ">Approve By</div>
+                    </th>
+                    <th style="width: 550px;vertical-align: middle ; horizontal-align: middle">
+                        <div style="width: 200px;text-align:center ">Status Approval</div>
+                    </th>
+                    <th style="width: 550px;vertical-align: middle ; horizontal-align: middle">
+                        <div style="width: 200px;text-align:center ">Action</div>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -105,108 +139,151 @@
                         {{$serv->request_date}}
                     </td>
                     <td>
-                        @if($serv->worked_date == NULL)
-                        <span class="badge badge-info">
-                            Waiting
-                        </span>
-                        @else
-                        {{$serv->worked_date}}
-                        @endif
+                        <div style="text-align:center">
+                            @if($serv->worked_date == NULL)
+                            <span class="badge badge-info">
+                                Waiting
+                            </span>
+                            @else
+                            {{$serv->worked_date}}
+                            @endif
+                        </div>
                     </td>
                     <td>
-                        @if($serv->checked_by == NULL)
-                        <span class="badge badge-info">
-                            Waiting
-                        </span>
-                        @else
-                        {{$serv->checked_by}}
-                        @endif
+                        <div style="text-align:center">
+
+                            @if($serv->checked_by == NULL)
+                            <span class="badge badge-info">
+                                Waiting
+                            </span>
+                            @else
+                            {{$serv->checked_by}}
+                            @endif
+                        </div>
                     </td>
                     <td>
-                        @if($serv->status_checked == "Pending")
-                        <span class="badge badge-warning">
-                            {{$serv->status_checked}}
-                        </span>
-                        @else
-                        <span class="badge badge-success">
-                            {{$serv->status_checked}}
-                        </span>
-                        @endif
+                        <div style="text-align:center">
+
+                            @if($serv->status_checked == "Pending")
+                            <span class="badge badge-warning">
+                                {{$serv->status_checked}}
+                            </span>
+                            @else
+                            <span class="badge badge-success">
+                                {{$serv->status_checked}}
+                            </span>
+                            @endif
+                        </div>
                     </td>
                     <td>
-                        @if($serv->approved_by == NULL)
-                        <span class="badge badge-info">
-                            Waiting
-                        </span>
-                        @else
-                        {{$serv->approved_by}}
-                        @endif
+                        <div style="text-align:center">
+
+                            @if($serv->approved_by == NULL)
+                            <span class="badge badge-info">
+                                Waiting
+                            </span>
+                            @else
+                            {{$serv->approved_by}}
+                            @endif
+                        </div>
                     </td>
                     <td>
-                        @if($serv->status_approval == "Approved")
-                        <span class="badge badge-success">
-                            {{$serv->status_approval}}
-                        </span>
-                        @elseif($serv->status_approval == "Pending")
-                        <span class="badge badge-warning">
-                            {{$serv->status_approval}}
-                        </span>
-                        @else
-                        <span class="badge badge-danger">
-                            {{$serv->status_approval}}
-                        </span>
-                        @endif
+                        <div style="text-align:center">
+
+                            @if($serv->status_approval == "Approved")
+                            <span class="badge badge-success">
+                                {{$serv->status_approval}}
+                            </span>
+                            @elseif($serv->status_approval == "Pending")
+                            <span class="badge badge-warning">
+                                {{$serv->status_approval}}
+                            </span>
+                            @else
+                            <span class="badge badge-danger">
+                                {{$serv->status_approval}}
+                            </span>
+                            @endif
+                        </div>
                     </td>
                     <td>
-                        @if(Auth::user()->roles == "USER")
-                        <?php $step = 4; ?>
-                        @else
-                        <?php $step = 1; ?>
-                        @endif
+                        <div style="text-align:center">
+
+                            @if(Auth::user()->roles == "USER")
+                            <?php $step = 4; ?>
+                            @else
+                            <?php $step = 1; ?>
+                            @endif
 
 
-                        @if(Auth::user()->roles == "ADMIN" && $serv->status_approval == "Pending")
-                        <form action="{{route('server.approvemgr', ['id'=>$serv->id])}}" method="POST">
-                            @csrf
-                            <input type="hidden" value="PUT" name="_method">
-                            <input type="hidden" value="{{$serv->id}}" name="id_request">
-                            <input type="hidden" value="RS{{$serv->id}}" name="unique_request">
-                            <input type="hidden" value="Approval" name="role">
-                            <input type="submit" class="btn btn-success btn-sm" value="Approve">
-                        </form>
-                        <form action="{{route('server.disapprovemgr', ['id'=>$serv->id])}}" method="POST">
-                            @csrf
-                            <input type="hidden" value="PUT" name="_method">
-                            <input type="hidden" value="{{$serv->id}}" name="id_request">
-                            <input type="hidden" value="RS{{$serv->id}}" name="unique_request">
-                            <input type="hidden" value="Disapproval" name="role">
-                            <input type="submit" class="btn btn-danger btn-sm" value="Disapprove">
-                        </form>
-                        @elseif(Auth::user()->roles == "STAFF" && $serv->step == 1)
-                        <form class="d-inline" action="{{route('server.approvestaffw', ['id'=>$serv->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
-                            @csrf
-                            <input type="hidden" value="PUT" name="_method">
-                            <input type="hidden" value="{{$serv->id}}" name="id_request">
-                            <input type="hidden" value="RS{{$serv->id}}" name="unique_request">
-                            <input type="hidden" value="Working" name="role">
-                            <input type="submit" class="btn btn-success btn-sm" value="Approve">
-                        </form>
-                        @elseif(Auth::user()->roles == "STAFF" && $serv->step == 2)
-                        <form class="d-inline" action="{{route('server.approvestaffc', ['id'=>$serv->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
-                            @csrf
-                            <input type="hidden" value="PUT" name="_method">
-                            <input type="hidden" value="{{$serv->id}}" name="id_request">
-                            <input type="hidden" value="RS{{$serv->id}}" name="unique_request">
-                            <input type="hidden" value="Checking" name="role">
-                            <input type="submit" class="btn btn-success btn-sm" value="Approve">
-                        </form>
-                        @elseif($serv->step == 3 && $step != 4 || Auth::user()->roles == "ADMIN" || Auth::user()->roles == "STAFF")
-                        <a class="btn btn-success btn-sm disabled">Done</a>
-                        @endif
-                        @if(Auth::user()->roles == "USER" && Auth::user()->name == $serv->requester_name && $serv->step == 0)
-                        <a class="btn btn-info text-white btn-sm" href="{{route('server.edit', ['id'=>$serv->id])}}">Edit</a>
-                        @endif
-                        <a class="btn btn-info text-white btn-sm" href="{{route('server.show', ['id'=>$serv->id])}}">Detail</a>
+                            @if(Auth::user()->roles == "ADMIN" && $serv->status_approval == "Pending")
+                            <form class="d-inline" action="{{route('server.approvemgr', ['id'=>$serv->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
+                                @csrf
+                                <div class="tooltop">
+                                    <input type="hidden" value="PUT" name="_method">
+                                    <input type="hidden" value="{{$serv->id}}" name="id_request">
+                                    <input type="hidden" value="RS{{$serv->id}}" name="unique_request">
+                                    <input type="hidden" value="Approval" name="role">
+                                    <button type="submit" class="btn btn-success btn-ius">
+                                        <i class="nav-icon fa fa-check-square-o"></i>
+                                    </button>
+                                    <span class="tooltiptextteng">Approve</span>
+                                </div>
+                            </form>
+                            <form class="d-inline" action="{{route('server.disapprovemgr', ['id'=>$serv->id])}}" method="POST" onsubmit="return confirm('Dispprove This Request?')">
+                                @csrf
+                                <div class="tooltop">
+
+                                    <input type="hidden" value="PUT" name="_method">
+                                    <input type="hidden" value="{{$serv->id}}" name="id_request">
+                                    <input type="hidden" value="RS{{$serv->id}}" name="unique_request">
+                                    <input type="hidden" value="Disapproval" name="role">
+                                    <button type="submit" class="btn btn-danger btn-ius">
+                                        <i class="nav-icon fa fa-remove"></i>
+                                    </button>
+                                    <span class="tooltiptextteng">Disapprove</span>
+                                </div>
+                            </form>
+                            @elseif(Auth::user()->roles == "STAFF" && $serv->step == 1)
+                            <form class="d-inline" action="{{route('server.approvestaffw', ['id'=>$serv->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
+                                @csrf
+                                <div class="tooltop">
+                                    <input type="hidden" value="PUT" name="_method">
+                                    <input type="hidden" value="{{$serv->id}}" name="id_request">
+                                    <input type="hidden" value="RS{{$serv->id}}" name="unique_request">
+                                    <input type="hidden" value="Working" name="role">
+                                    <button type="submit" class="btn btn-success btn-ius">
+                                        <i class="nav-icon fa fa-check-square-o"></i>
+                                    </button>
+                                    <span class="tooltiptextteng">Approve</span>
+                                </div>
+                            </form>
+                            @elseif(Auth::user()->roles == "STAFF" && $serv->step == 2)
+                            <form class="d-inline" action="{{route('server.approvestaffc', ['id'=>$serv->id])}}" method="POST" onsubmit="return confirm('Approve This Request?')">
+                                @csrf
+                                <div class="tooltop">
+                                    <input type="hidden" value="PUT" name="_method">
+                                    <input type="hidden" value="{{$serv->id}}" name="id_request">
+                                    <input type="hidden" value="RS{{$serv->id}}" name="unique_request">
+                                    <input type="hidden" value="Checking" name="role">
+                                    <button type="submit" class="btn btn-success btn-ius">
+                                        <i class="nav-icon fa fa-check-square-o"></i>
+                                    </button>
+                                    <span class="tooltiptextteng">Approve</span>
+                                </div>
+                            </form>
+                            @elseif($serv->step == 3 && $step != 4 || Auth::user()->roles == "ADMIN" || Auth::user()->roles == "STAFF")
+                            <a class="btn btn-success btn-ius disabled">
+                                <div class="tooltop"><i class="nav-icon fa  fa-check-square-o"></i>
+                                    <span class="tooltiptextteng">Done</span>
+                                </div>
+                            </a>
+                            @endif
+                            <a class="btn btn-info text-white btn-ius" href="{{route('server.show', ['id'=>$serv->id])}}">
+                                <div class="tooltop"><i class="nav-icon fa  fa-search"></i>
+                                    <span class="tooltiptextteng">Detail</span>
+                                </div>
+                            </a>
+                        </div>
                     </td>
                 </tr>
                 @endforeach
