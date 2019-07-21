@@ -47,6 +47,7 @@ class ServerController extends Controller
         $server = new \App\Server;
         $current_date_time = Carbon::now();
         $server->requester_name = \Auth::user()->name;
+        $server->requester_email = \Auth::user()->email;
         $server->os = $request->get('os');
         $server->ram = $request->get('ram');
         $server->cpu = $request->get('cpu');

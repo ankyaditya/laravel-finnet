@@ -181,28 +181,28 @@
                 <h1 style="text-align:center">Dear Infra Team</h1>
                 <p style="text-align: justify;">We are already have firewall access request from {{$firewallaccesss->requester_name}}. This is all data request:
                     <li style="margin-left:20px">
-                        Project Name: {{$firewallaccesss->project_name}}
+                        Form ID <span style="padding-left: 115px">: {{$firewallaccesss->id}} </span>
+                    </li >
+                    <li style="margin-left:20px">
+                        Requester Name <span style="padding-left: 50px">: {{$firewallaccesss->requester_name}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Form ID: FW{{$firewallaccesss->id}}
+                        Source <span style="padding-left: 123px">: {{$firewallaccesss->source}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Requester Name: {{$firewallaccesss->requester_name}}
+                        Destination <span style="padding-left: 89px">: {{$firewallaccesss->destination}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Source: {{$firewallaccesss->source}}
+                        Making Access Period <span style="padding-left: 12px">: {{$firewallaccesss->access_period}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Destination: {{$firewallaccesss->destination}}
+                        Port <span style="padding-left: 142px">: {{$firewallaccesss->port}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Making Access Period: {{$firewallaccesss->access_period}}
+                        Information <span style="padding-left: 86px">: {{$firewallaccesss->description}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Port: {{$firewallaccesss->port}}
-                    </li>
-                    <li style="margin-left:20px">
-                        Information: {{$firewallaccesss->description}}
+                        Project Name <span style="padding-left: 70px">: {{$firewallaccesss->project_name}}</span>
                     </li>
                 </p>
 

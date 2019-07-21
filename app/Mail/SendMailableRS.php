@@ -30,6 +30,6 @@ class SendMailableRS extends Mailable
      */
     public function build()
     {
-        return $this->subject("Request Server/Firewall/OS")->view('server.mail');
+        return $this->subject("Server Request with ID RS{$this->server->id}")->view('server.mail');
     }
 }

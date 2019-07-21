@@ -49,6 +49,7 @@ class AccessFirewallController extends Controller
         $firewallaccesss = new \App\AccessFirewall;
         $current_date_time = Carbon::now();
         $firewallaccesss->requester_name = \Auth::user()->name;
+        $firewallaccesss->requester_email = \Auth::user()->email;
         $firewallaccesss->project_name = $request->get('project_name');
         $firewallaccesss->source = $request->get('source');
         $firewallaccesss->destination = $request->get('destination');

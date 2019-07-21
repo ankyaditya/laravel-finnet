@@ -181,43 +181,43 @@
                 <h1 style="text-align:center">Dear Infra Team</h1>
                 <p style="text-align: justify;">We are already have order link from {{$orderlink->requester_name}}. This is all data request:
                     <li style="margin-left:20px">
-                        Nama Perusahaan: {{$orderlink->namaperusahaan}}
+                       Nama Perusahaan <span style="padding-left: 105px">: {{$orderlink->namaperusahaan}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Form ID: OL{{$orderlink->id}}
+                        Form ID <span style="padding-left: 181px">: OL{{$orderlink->id}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Requester Name: {{$orderlink->requester_name}}
+                        Requester Name <span style="padding-left: 116px">: {{$orderlink->requester_name}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Alamat Data Center: {{$orderlink->address}}
+                        Alamat Data Center <span style="padding-left: 95px">: {{$orderlink->address}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        No. Telepon Referensi: {{$orderlink->notelpon}}
+                        No. Telepon Referensi <span style="padding-left: 77px">: {{$orderlink->notelpon}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Nama PIC: {{$orderlink->namapic}}
+                        Nama PIC <span style="padding-left: 167px">: {{$orderlink->namapic}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        No.Telp & Email PIC: {{$orderlink->nopic}} - {{$orderlink->emailpic}}
+                        No.Telp & Email PIC <span style="padding-left: 93px">: {{$orderlink->nopic}} - {{$orderlink->emailpic}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Provider Link: {{$orderlink->providerlink}}
+                        Provider Link <span style="padding-left: 144px">: {{$orderlink->providerlink}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Jenis Link: {{$orderlink->jenislink}}
+                        Jenis Link <span style="padding-left: 171px">: {{$orderlink->jenislink}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Backhaul: {{$orderlink->backhaul}}
+                        Backhaul <span style="padding-left: 173px">: {{$orderlink->backhaul}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Bandwidth Link: {{$orderlink->bandwidthlink}}
+                        Bandwidth Link <span style="padding-left: 127px">: {{$orderlink->bandwidthlink}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Beban Instalasi Kabel Gedung: {{$orderlink->ikg}}
+                        Beban Instalasi Kabel Gedung <span style="padding-left: 20px">: {{$orderlink->ikg}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Delivery Target Date: {{$orderlink->targetdate}}
+                        Delivery Target Date <span style="padding-left: 88px">: {{$orderlink->targetdate}}</span>
                     </li>
                 </p>
 

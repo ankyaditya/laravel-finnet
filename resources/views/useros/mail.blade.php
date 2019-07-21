@@ -181,19 +181,19 @@
                 <p style="text-align: justify;">We are already have Operating System request from {{$useros->requester_name}}. This is all data request:
 
                     <li style="margin-left:20px">
-                        Form ID: OS{{$useros->id}}
+                        Form ID <span style="padding-left: 143px">: OS{{$useros->id}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Requester Name: {{$useros->requester_name}}
+                        Requester Name <span style="padding-left: 78px">: {{$useros->requester_name}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        IP Server: {{$useros->source}}
+                        IP Server <span style="padding-left: 137px">: {{$useros->source}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Roles: {{$useros->roles}}
+                        Roles <span style="padding-left: 162px">: {{$useros->roles}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Information: {{$useros->description}}
+                        Information <span style="padding-left: 116px">: {{$useros->description}}</span>
                     </li>
 
                 </p>

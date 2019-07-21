@@ -50,6 +50,7 @@ class UserOsController extends Controller
         $useros = new \App\UserOs;
         $current_date_time = Carbon::now();
         $useros->requester_name = \Auth::user()->name;
+        $useros->requester_email = \Auth::user()->email;
         $useros->project_name = $request->get('project_name');
         $useros->source = $request->get('source');
         $useros->username = $request->get('username');

@@ -30,6 +30,6 @@ class SendMailableOL extends Mailable
      */
     public function build()
     {
-        return $this->subject("Request Server/Firewall/OS/Link")->view('orderlink.mail');
+        return $this->subject("Order Link with ID OL{$this->orderlink->id}")->view('orderlink.mail');
     }
 }

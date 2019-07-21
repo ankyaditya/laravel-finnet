@@ -181,31 +181,31 @@
                 <p style="text-align: justify;">We are already have Server request from {{$server->requester_name}}. This is all data request:
 
                     <li style="margin-left:20px">
-                        Form ID: RS{{$server->id}}
+                        Form ID <span style="padding-left: 170px">: RS{{$server->id}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Requester Name: {{$server->requester_name}}
+                        Requester Name <span style="padding-left: 105px">: {{$server->requester_name}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Operating System: {{$server->os}}
+                        Operating System <span style="padding-left: 97px">: {{$server->os}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        RAM: {{$server->ram}} GB
+                        RAM <span style="padding-left: 195px">: {{$server->ram}} GB</span>
                     </li>
                     <li style="margin-left:20px">
-                        CPU: {{$server->cpu}} GB
+                        CPU <span style="padding-left: 198px">: {{$server->cpu}} GB</span>
                     </li>
                     <li style="margin-left:20px">
-                        Disk: {{$server->disk}} GB
+                        Disk <span style="padding-left: 198px">: {{$server->disk}} GB</span>
                     </li>
                     <li style="margin-left:20px">
-                        Environtment: {{$server->environtment}}
+                        Environtment <span style="padding-left: 129px">: {{$server->environtment}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Aplikasi: {{$server->aplikasi}}
+                        Aplikasi <span style="padding-left: 173px">: {{$server->aplikasi}}</span>
                     </li>
                     <li style="margin-left:20px">
-                        Information: {{$server->description}}
+                        Information <span style="padding-left: 143px">: {{$server->description}}</span>
                     </li>
 
                 </p>

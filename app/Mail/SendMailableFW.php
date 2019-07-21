@@ -30,6 +30,6 @@ class SendMailableFW extends Mailable
      */
     public function build()
     {
-        return $this->subject("Request Server/Firewall/OS")->view('firewallaccess.mail');
+        return $this->subject("Firewall Request with ID FW{$this->firewallaccesss->id}")->view('firewallaccess.mail');
     }
 }

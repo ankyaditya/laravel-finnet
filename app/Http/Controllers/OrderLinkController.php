@@ -48,6 +48,7 @@ class OrderLinkController extends Controller
         $orderlink = new \App\OrderLink;
         $current_date_time = Carbon::now();
         $orderlink->requester_name = \Auth::user()->name;
+        $orderlink->requester_email = \Auth::user()->email;
         $orderlink->namaperusahaan = $request->get('namaperusahaan');
         $orderlink->address = $request->get('address');
         $orderlink->notelpon = $request->get('notelpon');

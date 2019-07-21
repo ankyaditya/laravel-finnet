@@ -30,6 +30,6 @@ class SendMailableOS extends Mailable
      */
     public function build()
     {
-        return $this->subject("Request Server/Firewall/OS")->view('useros.mail');
+        return $this->subject("User OS Request with ID OS{$this->useros->id}")->view('useros.mail');
     }
 }
