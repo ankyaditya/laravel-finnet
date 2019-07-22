@@ -254,6 +254,13 @@
                                 </div>
                             </a>
                             @endif
+                            @if(Auth::user()->roles == "USER" && Auth::user()->name == $uos->requester_name && $uos->step == 0)
+                            <a class="btn btn-primary text-white btn-ius" href="{{route('useros.edit', ['id'=>$uos->id])}}">
+                                <div class="tooltop"><i class="nav-icon fa  fa-edit" style="float:center"></i>
+                                    <span class="tooltiptextteng">Edit</span>
+                                </div>
+                            </a>
+                            @endif
                             <a class="btn btn-info text-white btn-ius" href="{{route('useros.show', ['id'=>$uos->id])}}">
                                 <div class="tooltop"><i class="nav-icon fa  fa-search"></i>
                                     <span class="tooltiptextteng">Detail</span>

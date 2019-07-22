@@ -259,7 +259,7 @@
                                 </div>
                             </a>
                             @endif
-                            @if(Auth::user()->roles == "USER" && Auth::user()->name == $firewallaccess->requester_name)
+                            @if(Auth::user()->roles == "USER" && Auth::user()->name == $firewallaccess->requester_name && $firewallaccess->step == 0)
                             <a class="btn btn-primary text-white btn-ius" href="{{route('firewallaccess.edit', ['id'=>$firewallaccess->id])}}">
                                 <div class="tooltop"><i class="nav-icon fa  fa-edit" style="float:center"></i>
                                     <span class="tooltiptextteng">Edit</span>
